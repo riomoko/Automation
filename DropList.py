@@ -1,8 +1,8 @@
 import sys
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QListWidget, QListWidgetItem
 )
-from PyQt5.QtCore import Qt, QUrl
+from PySide6.QtCore import Qt, QUrl
 #classe per raccogliere i video
 
 class DraggableListWidget(QListWidget):

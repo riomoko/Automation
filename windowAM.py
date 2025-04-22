@@ -1,8 +1,8 @@
 import sys
 import os
-from PyQt5.QtWidgets import QApplication, QLabel, QListWidget, QListWidgetItem, QWidget, QVBoxLayout, QPushButton, QHBoxLayout, qApp
-from PyQt5.QtGui import QDrag, QPixmap, QIcon, QPainter, QCursor
-from PyQt5.QtCore import Qt, QMimeData, QUrl, QPoint, QTimer
+from PySide6.QtWidgets import QApplication, QLabel, QListWidget, QListWidgetItem, QWidget, QVBoxLayout, QPushButton, QHBoxLayout
+from PySide6.QtGui import QDrag, QPixmap, QIcon, QPainter, QCursor
+from PySide6.QtCore import Qt, QMimeData, QUrl, QPoint, QTimer
 
 
 #clsse che crea finestra con la lista dei video da trascinare
@@ -103,8 +103,8 @@ class MainWindow(QWidget):
     def __init__(self, files):
         super().__init__()
         self.setWindowTitle("ASTROMOSTRO Drag & Drop")
-      #  self.setGeometry(3000, 200, 800, 600)
-        self.setGeometry(1500, 100,400, 300)
+        self.setGeometry(5500, 10, 400, 300)
+      #  self.setGeometry(1500, 100,400, 300)
         layout = QVBoxLayout()
         self.file_list = FileDragLabel(files)
         layout.addWidget(self.file_list)
@@ -146,4 +146,4 @@ if __name__ == "__main__":
 
     window = MainWindow(file_list)
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

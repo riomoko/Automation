@@ -1,0 +1,1 @@
+nuitka --standalone --follow-imports --include-data-dir=images=images --macos-create-app-bundle --enable-plugin=pyside6 main.py

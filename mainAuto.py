@@ -4,7 +4,7 @@ import random
 from tts import TTS
 from windowAM import MainWindow
 from autoGui import AguiTools
-from PyQt5.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 from DropList import FileDropWidget
 import time
 import threading
@@ -91,8 +91,8 @@ for i in range(12):
     time.sleep(random.uniform(1, 2.1))
     TTS.read("emozione!!! ")
     imageCheck("images/views.png")
-    imageCheck("images/successivo.png")
-    agui_tools.imageClick("images/successivo.png")
+    imageCheck("images/successivoMac.png")
+    agui_tools.imageClick("images/successivoMac.png")
     time.sleep(random.uniform(2, 3.1))
 
 
