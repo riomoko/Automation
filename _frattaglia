@@ -1,0 +1,95 @@
+
+#    file_list = [
+ #       r"C:\Users\Admin\Dropbox\ASTROMOSTRO\pt-PT\Áries Horóscopo Previsão Diária 20 abril 2025.mp4",
+#        r"C:\Users\Admin\Dropbox\ASTROMOSTRO\pt-PT\Touro Horóscopo Previsão Diária 20 abril 2025.mp4",
+ #       r"C:\Users\Admin\Dropbox\ASTROMOSTRO\pt-PT\Virgem Horóscopo Previsão Diária 20 abril 2025.mp4"
+ #   ]
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+
+    # Solo per debug
+    print("Starting application")
+
+    file_list = file_paths
+    window = MainWindow(file_list)
+    window.show()
+    sys.exit(app.exec_())
+
+
+
+TTS.read("Finito")
+
+
+
+
+
+
+ image_check_drop= threading.Thread(target=imageCheck, args=("icons/video_upload.png",10))
+    image_check_drop.start()
+    image_check_drop.join()
+    print("destinazione trovata")
+  #  TTS.read("Dragga e droppa")
+
+    thread_drop = threading.Thread(target=agui_tools.dragAndDrop, args=("icons/AM.png", "icons/video_upload.png"))
+    thread_drop.start()
+    thread_drop.join()
+    print("Bingo")
+    TTS.read("Bingo")
+
+ #   window = MainWindow(file_list)
+#    window.show()
+#    app.exec_()
+ #   imageCheck("icons/AM.png")
+ #   imageCheck("icons/AM.png")
+
+
+
+
+#    app.exec_()
+
+
+
+
+
+
+
+  #  window_thread = threading.Thread(target=run_window, args=(file_list,))
+ #   window_thread.start()
+  #  time.sleep(10)
+
+  #  app = QApplication(sys.argv)
+
+
+
+
+
+
+
+
+
+  #  thread_drop = threading.Thread(target=dragAndDropBis, args=("icons/AM.png", "images/video_upload.png"))
+   # thread_drop.start()
+ #   thread_drop.join()
+  #  app = QApplication(sys.argv)
+
+ #   QTimer.singleShot(8000, window.on_timer_finished)
+    print("cioppa")
+    # Creazione dei thread
+ #
+  #  image_check_thread = threading.Thread(target=imageCheck, args=("icons/AM.png",10))
+
+
+    # Avvio dei thread
+
+  #  window_thread.start()
+   # image_check_thread.start()
+   # image_check_thread.join()
+  #  print("pre drop")
+
+
+   # thread_drop.join()
+    print("Bingo")
+
+ #   print("video upload trovato")

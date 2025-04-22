@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+*.egg-info/
+*.egg
+
+# PyCharm
+.idea/
+*.iml
+
+# Backup e file temporanei
+*.bak
+*.tmp
+*.swp
+
+# File di log
+*.log
+
+# Altri file
+*.DS_Store
+*.env
+build/
+dist/
