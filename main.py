@@ -3,7 +3,7 @@ from tts import TTS
 from windowAM import MainWindow
 from autoGui import AguiTools
 from PySide6.QtWidgets import QApplication
-from DropList import FileDropWidget
+from DropList import FileDropWindow
 import time
 import threading
 import pyautogui as agui
@@ -39,31 +39,17 @@ def run_window(file_list):
     app.exec_()
 
 # Funzione per eseguire il controllo immagine
-def run_image_check():
-    imageCheck("images/am.png")
 
-def imageCheck(image, seconds=20):
-    ok = False
-    for i in range(20):
-        print(f"secondi caricamento {i + 1}")
-        time.sleep(1)
-        if agui_tools.imagePresent(image):
-            ok = True
-            print(image + " present")
-            break
-    if not ok:
-        print(image + " missing")
-        TTS.read(image + " missing")
-        TTS.read("Programma terminato")
-        sys.exit()
+
+
 
 
 TTS.read("Iniziamo")
 app = QApplication(sys.argv)
-window = FileDropWidget()
+window = FileDropWindow()
 window.show()
-app.exec_()
-agui_tools = AguiTools()
+app.exec()
+#agui_tools = AguiTools()
 file_paths = window.get_file_paths()
 print("File selezionati:", file_paths)
 TTS.read("fails ricevuti")
