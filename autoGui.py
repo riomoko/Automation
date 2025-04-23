@@ -18,7 +18,8 @@ class AguiTools:
 
     def imageClick(self, image):
         location = agui.locateCenterOnScreen(image, confidence=0.75)
-        agui.click(location)
+        agui.moveTo(location, duration=3)
+        agui.click()
 
     def dragAndDrop(self, imageToDrag, imageToDropOn, delay=1.9):
         locationToDrag = agui.locateCenterOnScreen(imageToDrag, confidence=0.8)

@@ -1,11 +1,9 @@
 import sys
 import random
-
 from tts import TTS
 from windowAM import MainWindow
 from autoGui import AguiTools
 from PySide6.QtWidgets import QApplication
-from DropList import FileDropWidget
 import time
 import threading
 import pyautogui as agui
@@ -56,16 +54,21 @@ def imageCheck(image, seconds=20):
         TTS.read("Programma terminato")
         sys.exit()
 
+uploadPlus= "images/upload_mono.png"
+videoUploadArea = "images/video_upload.png"
+iconAM="images/am.png"
 for i in range(12):
     TTS.read("automazione iniziata")
 
     agui_tools = AguiTools()
-    imageCheck("images/red_upload.png")
-    agui_tools.imageClick("images/red_upload.png")
-    imageCheck("images/video_upload.png")
-    imageCheck("images/am.png")
-    time.sleep(random.uniform(0.1,0.12))
-    dragAndDrop("images/am.png","images/video_upload.png")
+    imageCheck(uploadPlus)
+    agui_tools.imageClick(uploadPlus)
+    time.sleep(random.uniform(0.1, 0.12))
+    agui_tools.imageClick(uploadPlus)
+    imageCheck(videoUploadArea)
+    imageCheck(iconAM)
+    time.sleep(random.uniform(0.1,0.2))
+    dragAndDrop(iconAM,videoUploadArea )
     time.sleep(random.uniform(0.1, 2.1))
     imageCheck("images/astromostro.png")
     TTS.read("tag")
