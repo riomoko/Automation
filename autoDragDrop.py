@@ -1,8 +1,8 @@
 import sys
 import os
-from PyQt5.QtWidgets import QApplication, QLabel, QListWidget, QListWidgetItem, QWidget, QVBoxLayout
-from PyQt5.QtGui import QDrag, QPixmap, QIcon, QPainter, QCursor
-from PyQt5.QtCore import Qt, QMimeData, QUrl, QPoint, QTimer
+from PySide6.QtWidgets import QApplication, QLabel, QListWidget, QListWidgetItem, QWidget, QVBoxLayout
+from PySide6.QtGui import QDrag, QPixmap, QIcon, QPainter, QCursor
+from PySide6.QtCore import Qt, QMimeData, QUrl, QPoint, QTimer
 import time
 import threading
 import pyautogui as agui

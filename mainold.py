@@ -2,7 +2,7 @@ import sys
 from tts import TTS
 from windowAM import MainWindow
 from autoGui import AguiTools
-from PyQt5.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 from DropList import FileDropWidget
 import time
 import threading
