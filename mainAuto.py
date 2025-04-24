@@ -9,7 +9,7 @@ import threading
 import pyautogui as agui
 from windowAM import MainWindow
 
-def dragAndDrop(imageToDrag, imageToDropOn):
+def drag_and_drop(imageToDrag, imageToDropOn):
     print("nuovo drag and drop 1")
     time.sleep(random.uniform(0.1, 1.8))
 
@@ -37,9 +37,9 @@ def run_window(file_list):
 
 # Funzione per eseguire il controllo immagine
 def run_image_check():
-    imageCheck("images/am.png")
+    image_check("images/am.png")
 
-def imageCheck(image, seconds=20):
+def image_check(image, seconds=20):
     ok = False
     for i in range(20):
         print(f"secondi caricamento {i + 1}")
@@ -54,21 +54,19 @@ def imageCheck(image, seconds=20):
         TTS.read("Programma terminato")
         sys.exit()
 
-def loadVideo():
-
-    TTS.read("automazione iniziata")
+def load_video():
 
 
-    imageCheck(uploadPlus)
+    image_check(uploadPlus)
     agui_tools.imageClick(uploadPlus)
     time.sleep(random.uniform(0.1, 0.12))
     # agui_tools.imageClick(uploadPlus)
-    imageCheck(videoUploadArea)
-    imageCheck(iconAM)
+    image_check(videoUploadArea)
+    image_check(iconAM)
     time.sleep(random.uniform(0.1, 0.2))
-    dragAndDrop(iconAM, videoUploadArea)
+    drag_and_drop(iconAM, videoUploadArea)
     time.sleep(random.uniform(0.1, 2.1))
-    imageCheck(hashAstromostro)
+    image_check(hashAstromostro)
     TTS.read("tag")
     agui_tools.moveToImageCenter(hashAstromostro, random.uniform(0.3, 1.9))
     for i in range(15):
@@ -77,7 +75,7 @@ def loadVideo():
         time.sleep(random.uniform(0.1, 0.2))
     TTS.read("tag finiti")
     time.sleep(random.uniform(0.1, 2.1))
-    imageCheck(uploaded, seconds=40)
+    image_check(uploaded, seconds=40)
     TTS.read("caricato")
     time.sleep(random.uniform(0.1, 1.1))
     agui.scroll(-1300)
@@ -86,10 +84,12 @@ def loadVideo():
 
 
 
-def publishNow():
-    loadVideo()
+def publish_now():
+    TTS.read("automazione Post Now")
 
-    imageCheck(post)
+    load_video()
+
+    image_check(post)
     time.sleep(random.uniform(0.1, 1.1))
     agui_tools.moveToImageCenter(post, random.uniform(0.3, 1.9))
     time.sleep(random.uniform(0.1, 0.3))
@@ -98,26 +98,56 @@ def publishNow():
 
     time.sleep(random.uniform(1, 2.1))
     TTS.read("emozione!!! ")
-    imageCheck(views)
-    imageCheck(successivo)
+    image_check(views)
+    image_check(successivo)
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
 
-def publishBeforeMidnight():
-    loadVideo()
+def publish_before_midnight():
+    TTS.read("automazione Sul tardi oggi")
+    load_video()
 
-    imageCheck(post)
-    time.sleep(random.uniform(0.1, 1.1))
-    agui_tools.moveToImageCenter(post, random.uniform(0.3, 1.9))
+    image_check(schedule)
     time.sleep(random.uniform(0.1, 0.3))
-    TTS.read("posto")
+    agui_tools.moveToImageCenter(schedule, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    TTS.read("schedullo")
     agui.click()
+
+    time.sleep(random.uniform(0.1, 0.2))
+
+    image_check(clock)
+    time.sleep(random.uniform(0.1, 0.3))
+    agui_tools.moveToImageCenter(clock, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    TTS.read("clocko")
+    agui.click()
+    time.sleep(random.uniform(0.1, 0.2))
+
+    loc = agui.locateCenterOnScreen(clock, confidence=0.9)
+
+    if loc is not None:
+        print("CLOCK")
+        print(loc)
+        agui.moveTo(loc.x + 10, loc.y - 100, duration=0.1)
+        time.sleep(random.uniform(0.1, 0.2))
+        for i in range(24):
+            agui.scroll(-900)
+            time.sleep(random.uniform(0.1, 0.2))
+
+        time.sleep(random.uniform(0.11, 0.2))
+        agui.moveTo(loc.x + 100, loc.y - 100, duration=0.1)
+        time.sleep(random.uniform(0.11, 0.2))
+        for i in range(24):
+            agui.scroll(-900)
+            time.sleep(random.uniform(0.1, 0.2))
+        time.sleep(random.uniform(0.1, 0.2))
 
     time.sleep(random.uniform(1, 2.1))
     TTS.read("emozione!!! ")
-    imageCheck(views)
-    imageCheck(successivo)
+    image_check(views)
+    image_check(successivo)
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
@@ -131,13 +161,15 @@ uploaded = "images/uploadedBuzz.PNG"
 post = "images/postBuzz.PNG"
 views = "images/viewsBuzz.PNG"
 successivo = "images/successivoBuzz.PNG"
-schedule = "images/successivoBuzz.PNG"
+schedule = "images/scheduleBuzz.PNG"
+clock = "images/clockBuzz.PNG"
+red_schedule = "images/red_schedule_buzz.PNG"
 
 agui_tools = AguiTools()
 
 for i in range(12):
-    publishNow()
-
+   # publishNow()
+    publish_before_midnight()
 TTS.read("Terminato")
 sys.exit(0)
 
