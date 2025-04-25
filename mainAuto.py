@@ -39,9 +39,12 @@ def run_window(file_list):
 def run_image_check():
     image_check("images/am.png")
 
+def pause():
+    time.sleep(random.uniform(0.05, 0.15))
+
 def image_check(image, seconds=20):
     ok = False
-    for i in range(20):
+    for i in range(seconds):
         print(f"secondi caricamento {i + 1}")
         time.sleep(1)
         if agui_tools.imagePresent(image):
@@ -55,34 +58,57 @@ def image_check(image, seconds=20):
         sys.exit()
 
 def load_video():
-
-
     image_check(uploadPlus)
     agui_tools.imageClick(uploadPlus)
     time.sleep(random.uniform(0.1, 0.12))
     # agui_tools.imageClick(uploadPlus)
     image_check(videoUploadArea)
     image_check(iconAM)
-    time.sleep(random.uniform(0.1, 0.2))
+    pause()
     drag_and_drop(iconAM, videoUploadArea)
-    time.sleep(random.uniform(0.1, 2.1))
-    image_check(hashAstromostro)
+    pause()
+    image_check(hashAstromostro, seconds=120)
     TTS.read("tag")
     agui_tools.moveToImageCenter(hashAstromostro, random.uniform(0.3, 1.9))
     for i in range(15):
         agui.click()
         #  TTS.read("t")
-        time.sleep(random.uniform(0.1, 0.2))
+        pause()
     TTS.read("tag finiti")
-    time.sleep(random.uniform(0.1, 2.1))
-    image_check(uploaded, seconds=40)
+    pause()
+    image_check(uploaded, seconds=180)
     TTS.read("caricato")
-    time.sleep(random.uniform(0.1, 1.1))
+    pause()
     agui.scroll(-1300)
     TTS.read("scrollato")
 
+def set_clock():
+    image_check(clock)
+    time.sleep(random.uniform(0.1, 0.3))
+    agui_tools.moveToImageCenter(clock, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    TTS.read("clocko")
+    agui.click()
+    time.sleep(random.uniform(0.1, 0.2))
 
+    loc = agui.locateCenterOnScreen(clock, confidence=0.9)
+    if loc is not None:
+        print("CLOCK")
+        print(loc)
+        agui.moveTo(loc.x + 10, loc.y - 100, duration=0.1)
+        time.sleep(random.uniform(0.1, 0.2))
+        for i in range(24):
+            agui.scroll(-900)
+            time.sleep(random.uniform(0.1, 0.2))
 
+        time.sleep(random.uniform(0.11, 0.2))
+        agui.moveTo(loc.x + 100, loc.y - 100, duration=0.1)
+        time.sleep(random.uniform(0.11, 0.2))
+        for i in range(24):
+            agui.scroll(-900)
+            time.sleep(random.uniform(0.1, 0.2))
+        time.sleep(random.uniform(0.1, 0.2))
+        return loc
 
 def publish_now():
     TTS.read("automazione Post Now")
@@ -112,37 +138,23 @@ def publish_before_midnight():
     time.sleep(random.uniform(0.1, 0.3))
     agui_tools.moveToImageCenter(schedule, random.uniform(0.3, 0.5))
     time.sleep(random.uniform(0.1, 0.2))
+    agui.click()
+
+    time.sleep(random.uniform(0.1, 0.2))
+
+    loc=set_clock()
+
+    agui.moveTo(loc.x, loc.y , duration=0.1)
+    pause()
+    agui.scroll(-1300)
+    pause()
+    image_check(red_schedule)
+    pause()
+    agui_tools.moveToImageCenter(red_schedule, random.uniform(0.3, 0.5))
+    pause()
+    agui.click()
     TTS.read("schedullo")
-    agui.click()
 
-    time.sleep(random.uniform(0.1, 0.2))
-
-    image_check(clock)
-    time.sleep(random.uniform(0.1, 0.3))
-    agui_tools.moveToImageCenter(clock, random.uniform(0.3, 0.5))
-    time.sleep(random.uniform(0.1, 0.2))
-    TTS.read("clocko")
-    agui.click()
-    time.sleep(random.uniform(0.1, 0.2))
-
-    loc = agui.locateCenterOnScreen(clock, confidence=0.9)
-
-    if loc is not None:
-        print("CLOCK")
-        print(loc)
-        agui.moveTo(loc.x + 10, loc.y - 100, duration=0.1)
-        time.sleep(random.uniform(0.1, 0.2))
-        for i in range(24):
-            agui.scroll(-900)
-            time.sleep(random.uniform(0.1, 0.2))
-
-        time.sleep(random.uniform(0.11, 0.2))
-        agui.moveTo(loc.x + 100, loc.y - 100, duration=0.1)
-        time.sleep(random.uniform(0.11, 0.2))
-        for i in range(24):
-            agui.scroll(-900)
-            time.sleep(random.uniform(0.1, 0.2))
-        time.sleep(random.uniform(0.1, 0.2))
 
     time.sleep(random.uniform(1, 2.1))
     TTS.read("emozione!!! ")
@@ -151,7 +163,50 @@ def publish_before_midnight():
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
+def publish_day(image_day):
+    TTS.read("automazione Day")
+    load_video()
 
+    image_check(schedule)
+    time.sleep(random.uniform(0.1, 0.3))
+    agui_tools.moveToImageCenter(schedule, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    agui.click()
+
+    image_check(calendar_icon)
+    time.sleep(random.uniform(0.1, 0.3))
+    agui_tools.moveToImageCenter(calendar_icon, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    agui.click()
+
+    image_check(image_day)
+    time.sleep(random.uniform(0.1, 0.3))
+    agui_tools.moveToImageCenter(image_day, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    agui.click()
+
+    time.sleep(random.uniform(0.1, 0.2))
+
+    loc=set_clock()
+
+    agui.moveTo(loc.x, loc.y , duration=0.1)
+    pause()
+    agui.scroll(-1300)
+    pause()
+    image_check(red_schedule)
+    pause()
+    agui_tools.moveToImageCenter(red_schedule, random.uniform(0.3, 0.5))
+    pause()
+    agui.click()
+    TTS.read("schedullo")
+
+
+    time.sleep(random.uniform(1, 2.1))
+    TTS.read("emozione!!! ")
+    image_check(views)
+    image_check(successivo)
+    agui_tools.imageClick(successivo)
+    time.sleep(random.uniform(2, 3.1))
 
 uploadPlus = "images/uploadBuzz.png"
 videoUploadArea = "images/uploadVideoBuzz.png"
@@ -164,13 +219,28 @@ successivo = "images/successivoBuzz.PNG"
 schedule = "images/scheduleBuzz.PNG"
 clock = "images/clockBuzz.PNG"
 red_schedule = "images/red_schedule_buzz.PNG"
-
+calendar_icon = "images/calendar_icon.PNG"
+day_on_calendar1 = "images/26aprile.PNG"
+day_on_calendar2 = "images/27april.PNG"
+day_on_calendar3 = "images/28april.PNG"
 agui_tools = AguiTools()
 
+
 for i in range(12):
-   # publishNow()
-    publish_before_midnight()
-TTS.read("Terminato")
+
+  #    publish_now()
+   # publish_before_midnight()
+    publish_day(day_on_calendar1)
+for i in range(12):
+   # publish_now()
+  # publish_before_midnight()
+   publish_day(day_on_calendar2)
+for i in range(12):
+   # publish_now()
+   # publish_before_midnight()
+   publish_day(day_on_calendar3)
+
+TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
 
 
