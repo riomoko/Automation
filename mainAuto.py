@@ -84,9 +84,9 @@ def load_video():
 
 def set_clock():
     image_check(clock)
-    time.sleep(random.uniform(0.1, 0.3))
-    agui_tools.moveToImageCenter(clock, random.uniform(0.3, 0.5))
-    time.sleep(random.uniform(0.1, 0.2))
+    time.sleep(random.uniform(0.05, 0.1))
+    agui_tools.moveToImageCenter(clock, random.uniform(0.1, 0.3))
+    time.sleep(random.uniform(0.05, 0.1))
     TTS.read("clocko")
     agui.click()
     time.sleep(random.uniform(0.1, 0.2))
@@ -99,15 +99,15 @@ def set_clock():
         time.sleep(random.uniform(0.1, 0.2))
         for i in range(24):
             agui.scroll(-900)
-            time.sleep(random.uniform(0.1, 0.2))
+            time.sleep(random.uniform(0.05, 0.12))
 
-        time.sleep(random.uniform(0.11, 0.2))
+        time.sleep(random.uniform(0.05, 0.15))
         agui.moveTo(loc.x + 100, loc.y - 100, duration=0.1)
-        time.sleep(random.uniform(0.11, 0.2))
+        time.sleep(random.uniform(0.05, 0.15))
         for i in range(24):
             agui.scroll(-900)
-            time.sleep(random.uniform(0.1, 0.2))
-        time.sleep(random.uniform(0.1, 0.2))
+            time.sleep(random.uniform(0.05, 0.14))
+        time.sleep(random.uniform(0.05, 0.15))
         return loc
 
 def publish_now():
@@ -168,21 +168,21 @@ def publish_day(image_day):
     load_video()
 
     image_check(schedule)
-    time.sleep(random.uniform(0.1, 0.3))
-    agui_tools.moveToImageCenter(schedule, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    agui_tools.moveToImageCenter(schedule, random.uniform(0.1, 0.4))
     time.sleep(random.uniform(0.1, 0.2))
     agui.click()
 
     image_check(calendar_icon)
-    time.sleep(random.uniform(0.1, 0.3))
-    agui_tools.moveToImageCenter(calendar_icon, random.uniform(0.3, 0.5))
+    time.sleep(random.uniform(0.1, 0.2))
+    agui_tools.moveToImageCenter(calendar_icon, random.uniform(0.1, 0.1))
     time.sleep(random.uniform(0.1, 0.2))
     agui.click()
 
     image_check(image_day)
-    time.sleep(random.uniform(0.1, 0.3))
-    agui_tools.moveToImageCenter(image_day, random.uniform(0.3, 0.5))
-    time.sleep(random.uniform(0.1, 0.2))
+    time.sleep(random.uniform(0.05, 0.1))
+    agui_tools.moveToImageCenter(image_day, random.uniform(0.1, 0.3))
+    time.sleep(random.uniform(0.1, 0.1))
     agui.click()
 
     time.sleep(random.uniform(0.1, 0.2))
@@ -220,25 +220,28 @@ schedule = "images/scheduleBuzz.PNG"
 clock = "images/clockBuzz.PNG"
 red_schedule = "images/red_schedule_buzz.PNG"
 calendar_icon = "images/calendar_icon.PNG"
-day_on_calendar1 = "images/26aprile.PNG"
-day_on_calendar2 = "images/27april.PNG"
-day_on_calendar3 = "images/28april.PNG"
+day_on_calendar1 = "images/5maggio.PNG"
+day_on_calendar2 = "images/6maggio.PNG"
+day_on_calendar3 = "images/7maggio.PNG"
 agui_tools = AguiTools()
 
 
 for i in range(12):
-
-  #    publish_now()
-   # publish_before_midnight()
-    publish_day(day_on_calendar1)
+   #  publish_now()
+   publish_before_midnight()
+   # publish_day(day_on_calendar1)
 for i in range(12):
    # publish_now()
   # publish_before_midnight()
-   publish_day(day_on_calendar2)
+   publish_day(day_on_calendar1)
 for i in range(12):
    # publish_now()
    # publish_before_midnight()
-   publish_day(day_on_calendar3)
+   publish_day(day_on_calendar2)
+for i in range(12):
+    # publish_now()
+    # publish_before_midnight()
+    publish_day(day_on_calendar3)
 
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
