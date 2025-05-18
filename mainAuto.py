@@ -220,28 +220,28 @@ schedule = "images/scheduleBuzz.PNG"
 clock = "images/clockBuzz.PNG"
 red_schedule = "images/red_schedule_buzz.PNG"
 calendar_icon = "images/calendar_icon.PNG"
-day_on_calendar1 = "images/5maggio.PNG"
-day_on_calendar2 = "images/6maggio.PNG"
-day_on_calendar3 = "images/7maggio.PNG"
+day_on_calendar1 = "images/17maggio.PNG"
+day_on_calendar2 = "images/14maggio.PNG"
+day_on_calendar3 = "images/15maggio.PNG"
 agui_tools = AguiTools()
 
 
 for i in range(12):
-   #  publish_now()
-   publish_before_midnight()
+    publish_now()
+   # publish_before_midnight()
    # publish_day(day_on_calendar1)
 for i in range(12):
    # publish_now()
-  # publish_before_midnight()
-   publish_day(day_on_calendar1)
-for i in range(12):
+   publish_before_midnight()
+   #   publish_day(day_on_calendar1)
+#for i in range(12):
    # publish_now()
    # publish_before_midnight()
-   publish_day(day_on_calendar2)
-for i in range(12):
+  # publish_day(day_on_calendar2)
+#for i in range(12):
     # publish_now()
     # publish_before_midnight()
-    publish_day(day_on_calendar3)
+    #publish_day(day_on_calendar3)
 
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
