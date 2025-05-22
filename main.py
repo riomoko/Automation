@@ -74,7 +74,7 @@ for file_path in file_paths:
     print (file_list)
     window = MainWindow(file_list)
     window.show()
-    app.exec_()
+    app.exec()
 
 TTS.read("Terminato")
 sys.exit(0)
