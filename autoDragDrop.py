@@ -14,7 +14,7 @@ class FileDragLabel(QListWidget):
         super().__init__()
         self.file_paths = file_paths
         self.setViewMode(QListWidget.IconMode)
-        self.setIconSize(QPixmap("images/default.png").size())
+        self.setIconSize(QPixmap("images/deprecated/default.png").size())
         self.setDragDropMode(QListWidget.DragOnly)  # Imposta la modalità drag-only
         self.setSelectionMode(QListWidget.SingleSelection)
         self.setSpacing(10)

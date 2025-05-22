@@ -9,6 +9,9 @@ class TTS:
 
     @staticmethod
     def read(text, language="it"):
+            print(text)
+
+    def readAudio(text, language="it"):
         try:
             tts = gTTS(text=text, lang=language)
             tts.save("tts_output_audio.mp3")

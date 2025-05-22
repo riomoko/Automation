@@ -102,7 +102,7 @@ def set_clock():
             time.sleep(random.uniform(0.05, 0.12))
 
         time.sleep(random.uniform(0.05, 0.15))
-        agui.moveTo(loc.x + 100, loc.y - 100, duration=0.1)
+        agui.moveTo(loc.x + 200, loc.y - 100, duration=0.1)
         time.sleep(random.uniform(0.05, 0.15))
         for i in range(24):
             agui.scroll(-900)
@@ -182,7 +182,7 @@ def publish_day(image_day):
     image_check(image_day)
     time.sleep(random.uniform(0.05, 0.1))
     agui_tools.moveToImageCenter(image_day, random.uniform(0.1, 0.3))
-    time.sleep(random.uniform(0.1, 0.1))
+    time.sleep(random.uniform(0.05, 0.1))
     agui.click()
 
     time.sleep(random.uniform(0.1, 0.2))
@@ -195,7 +195,7 @@ def publish_day(image_day):
     pause()
     image_check(red_schedule)
     pause()
-    agui_tools.moveToImageCenter(red_schedule, random.uniform(0.3, 0.5))
+    agui_tools.moveToImageCenter(red_schedule, random.uniform(0.1, 0.3))
     pause()
     agui.click()
     TTS.read("schedullo")
@@ -208,40 +208,51 @@ def publish_day(image_day):
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
-uploadPlus = "images/uploadBuzz.png"
-videoUploadArea = "images/uploadVideoBuzz.png"
+#uploadPlus = "images/uploadBuzz.png"
+uploadPlus = "images/red_uploadPC.png"
+videoUploadArea = "images/video_upload.png"
 iconAM = "images/am.png"
-hashAstromostro = "images/HashAstromostroBuzz.PNG"
-uploaded = "images/uploadedBuzz.PNG"
-post = "images/postBuzz.PNG"
-views = "images/viewsBuzz.PNG"
-successivo = "images/successivoBuzz.PNG"
-schedule = "images/scheduleBuzz.PNG"
-clock = "images/clockBuzz.PNG"
-red_schedule = "images/red_schedule_buzz.PNG"
-calendar_icon = "images/calendar_icon.PNG"
-day_on_calendar1 = "images/17maggio.PNG"
-day_on_calendar2 = "images/14maggio.PNG"
-day_on_calendar3 = "images/15maggio.PNG"
+hashAstromostro = "images/astromostro.PNG"
+uploaded = "images/uploaded.PNG"
+post = "images/post.PNG"
+views = "images/views.PNG"
+successivo = "images/successivoPC.PNG"
+schedule = "images/schedule.PNG"
+clock = "images/clockpc.PNG"
+red_schedule = "images/schedulepc.PNG"
+calendar_icon = "images/calendar_iconpc.PNG"
+day_on_calendar1 = "images/19maggiopc.PNG"
+day_on_calendar2 = "images/20maggiopc.PNG"
+day_on_calendar3 = "images/21maggiopc.PNG"
+day_on_calendar4 = "images/22maggiopc.PNG"
 agui_tools = AguiTools()
 
 
-for i in range(12):
+for i in range(11):
+    print (i)
     publish_now()
-   # publish_before_midnight()
-   # publish_day(day_on_calendar1)
+    # publish_before_midnight()
+    #publish_day(day_on_calendar1)
 for i in range(12):
+    print(i)
    # publish_now()
-   publish_before_midnight()
-   #   publish_day(day_on_calendar1)
-#for i in range(12):
-   # publish_now()
-   # publish_before_midnight()
-  # publish_day(day_on_calendar2)
-#for i in range(12):
+    publish_before_midnight()
+    #publish_day(day_on_calendar2)
+for i in range(12):
+    print(i)
     # publish_now()
     # publish_before_midnight()
-    #publish_day(day_on_calendar3)
+    publish_day(day_on_calendar2)
+for i in range(12):
+    print(i)
+    # publish_now()
+    # publish_before_midnight()
+    publish_day(day_on_calendar3)
+for i in range(12):
+        print(i)
+        # publish_now()
+        # publish_before_midnight()
+        publish_day(day_on_calendar4)
 
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
