@@ -103,7 +103,7 @@ class MainWindow(QWidget):
     def __init__(self, files):
         super().__init__()
         self.setWindowTitle("ASTROMOSTRO Drag & Drop")
-        self.setGeometry(1600, 50, 400, 300)
+        self.setGeometry(1300, 50, 400, 300)
       #  self.setGeometry(1500, 100,400, 300)
         layout = QVBoxLayout()
         self.file_list = FileDragLabel(files)
