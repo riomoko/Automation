@@ -228,10 +228,10 @@ day_on_calendar4 = "images/26maggio.PNG"
 agui_tools = AguiTools()
 
 
-for i in range(11):
+for i in range(12):
     print (i)
     # publish_now()
-    # publish_before_midnight()
+    publish_before_midnight()
     #publish_day(day_on_calendar1)
 for i in range(12):
     print(i)
