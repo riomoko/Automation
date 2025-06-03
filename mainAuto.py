@@ -42,6 +42,14 @@ def run_image_check():
 def pause():
     time.sleep(random.uniform(0.05, 0.15))
 
+
+def check_and_click(image, seconds=20):
+    image_check(image, seconds)
+    time.sleep(random.uniform(0.05, 0.1))
+    agui_tools.moveToImageCenter(image, random.uniform(0.05, 0.11))
+    time.sleep(random.uniform(0.05, 0.1))
+    agui.click()
+
 def image_check(image, seconds=20):
     ok = False
     for i in range(seconds):
@@ -112,15 +120,10 @@ def set_clock():
 
 def publish_now():
     TTS.read("automazione Post Now")
-
     load_video()
 
-    image_check(post)
-    time.sleep(random.uniform(0.1, 1.1))
-    agui_tools.moveToImageCenter(post, random.uniform(0.3, 1.9))
-    time.sleep(random.uniform(0.1, 0.3))
+    check_and_click(post)
     TTS.read("posto")
-    agui.click()
 
     time.sleep(random.uniform(1, 2.1))
     TTS.read("emozione!!! ")
@@ -129,16 +132,11 @@ def publish_now():
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
-
 def publish_before_midnight():
     TTS.read("automazione Sul tardi oggi")
     load_video()
 
-    image_check(schedule)
-    time.sleep(random.uniform(0.1, 0.3))
-    agui_tools.moveToImageCenter(schedule, random.uniform(0.3, 0.5))
-    time.sleep(random.uniform(0.1, 0.2))
-    agui.click()
+    check_and_click(schedule)
 
     time.sleep(random.uniform(0.1, 0.2))
 
@@ -167,23 +165,13 @@ def publish_day(image_day):
     TTS.read("automazione Day")
     load_video()
 
-    image_check(schedule)
-    time.sleep(random.uniform(0.1, 0.2))
-    agui_tools.moveToImageCenter(schedule, random.uniform(0.1, 0.4))
-    time.sleep(random.uniform(0.1, 0.2))
-    agui.click()
+    check_and_click(schedule)
 
-    image_check(calendar_icon)
-    time.sleep(random.uniform(0.1, 0.2))
-    agui_tools.moveToImageCenter(calendar_icon, random.uniform(0.1, 0.1))
-    time.sleep(random.uniform(0.1, 0.2))
-    agui.click()
+    check_and_click(calendar_icon)
+    #comment this if in not change mouth
+    check_and_click(cambioMese)
 
-    image_check(image_day)
-    time.sleep(random.uniform(0.05, 0.1))
-    agui_tools.moveToImageCenter(image_day, random.uniform(0.1, 0.3))
-    time.sleep(random.uniform(0.05, 0.1))
-    agui.click()
+    check_and_click(image_day)
 
     time.sleep(random.uniform(0.1, 0.2))
 
@@ -200,13 +188,13 @@ def publish_day(image_day):
     agui.click()
     TTS.read("schedullo")
 
-
     time.sleep(random.uniform(1, 2.1))
     TTS.read("emozione!!! ")
     image_check(views)
     image_check(successivo)
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
+
 
 #uploadPlus = "images/uploadBuzz.png"
 uploadPlus = "images/plusUpload.png"
@@ -221,9 +209,10 @@ schedule = "images/schedule_vps.PNG"
 clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
-day_on_calendar1 = "images/28maggio.PNG"
-day_on_calendar2 = "images/29maggio.PNG"
-day_on_calendar3 = "images/30maggio.PNG"
+cambioMese="images/CambioMese.PNG"
+day_on_calendar1 = "images/4giugno.PNG"
+day_on_calendar2 = "images/5giugno.PNG"
+day_on_calendar3 = "images/6giugno.PNG"
 day_on_calendar4 = "images/26maggio.PNG"
 agui_tools = AguiTools()
 
@@ -231,7 +220,7 @@ agui_tools = AguiTools()
 for i in range(12):
     print (i)
     # publish_now()
-    publish_before_midnight()
+    # publish_before_midnight()
     #publish_day(day_on_calendar1)
 for i in range(12):
     print(i)
