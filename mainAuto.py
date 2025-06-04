@@ -8,6 +8,7 @@ import time
 import threading
 import pyautogui as agui
 from windowAM import MainWindow
+from messageTelegram import send_message_cele
 
 def drag_and_drop(imageToDrag, imageToDropOn):
     print("nuovo drag and drop 1")
@@ -63,6 +64,7 @@ def image_check(image, seconds=20):
         print(image + " missing")
         TTS.read(image + " missing")
         TTS.read("Programma terminato")
+        send_message_cele("Automazione BLOCCATA su immagine" + image )
         sys.exit()
 
 def load_video():
@@ -169,7 +171,7 @@ def publish_day(image_day):
 
     check_and_click(calendar_icon)
     #comment this if in not change mouth
-    check_and_click(cambioMese)
+    #check_and_click(cambioMese)
 
     check_and_click(image_day)
 
@@ -213,20 +215,20 @@ cambioMese="images/CambioMese.PNG"
 day_on_calendar1 = "images/4giugno.PNG"
 day_on_calendar2 = "images/5giugno.PNG"
 day_on_calendar3 = "images/6giugno.PNG"
-day_on_calendar4 = "images/26maggio.PNG"
+day_on_calendar4 = "images/7giugno.PNG"
 agui_tools = AguiTools()
 
-
+send_message_cele("Automazione Inizio" )
 for i in range(12):
     print (i)
     # publish_now()
-    # publish_before_midnight()
+    publish_before_midnight()
     #publish_day(day_on_calendar1)
 for i in range(12):
     print(i)
    # publish_now()
    # publish_before_midnight()
-    publish_day(day_on_calendar1)
+   # publish_day(day_on_calendar1)
 for i in range(12):
     print(i)
     # publish_now()
@@ -241,8 +243,9 @@ for i in range(12):
         print(i)
         # publish_now()
         # publish_before_midnight()
-      #  publish_day(day_on_calendar4)
+        publish_day(day_on_calendar4)
 
+send_message_cele("Automazione terminata tutto ok")
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
 
