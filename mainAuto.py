@@ -212,23 +212,23 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/4giugno.PNG"
-day_on_calendar2 = "images/5giugno.PNG"
-day_on_calendar3 = "images/6giugno.PNG"
-day_on_calendar4 = "images/7giugno.PNG"
+day_on_calendar1 = "images/13giugno.PNG"
+day_on_calendar2 = "images/14giugno.PNG"
+day_on_calendar3 = "images/15giugno.PNG"
+day_on_calendar4 = "images/16giugno.PNG"
 agui_tools = AguiTools()
 
-send_message_cele("Automazione Inizio" )
+send_message_cele("Automazione ASTROMOSTRO Inizio" )
 for i in range(12):
     print (i)
-    # publish_now()
+    #publish_now()
     publish_before_midnight()
     #publish_day(day_on_calendar1)
 for i in range(12):
     print(i)
    # publish_now()
-   # publish_before_midnight()
-   # publish_day(day_on_calendar1)
+    #publish_before_midnight()
+    publish_day(day_on_calendar1)
 for i in range(12):
     print(i)
     # publish_now()
@@ -243,9 +243,9 @@ for i in range(12):
         print(i)
         # publish_now()
         # publish_before_midnight()
-        publish_day(day_on_calendar4)
+        #publish_day(day_on_calendar4)
 
-send_message_cele("Automazione terminata tutto ok")
+send_message_cele("Automazione ASTROMOSTRO terminata tutto ok")
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
 
