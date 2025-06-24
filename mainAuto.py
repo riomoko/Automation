@@ -215,7 +215,7 @@ cambioMese="images/CambioMese.PNG"
 day_on_calendar1 = "images/25giugno.PNG"
 day_on_calendar2 = "images/26giugno.PNG"
 day_on_calendar3 = "images/27giugno.PNG"
-day_on_calendar4 = "images/16giugno.PNG"
+day_on_calendar4 = "images/28giugno.PNG"
 agui_tools = AguiTools()
 
 send_message_cele("Automazione ASTROMOSTRO Inizio" )
