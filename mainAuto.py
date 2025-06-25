@@ -233,6 +233,28 @@ def publish_day(image_day, hours, minutes):
     time.sleep(random.uniform(2, 3.1))
 
 
+def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycles=12):
+    """
+    Programma le pubblicazioni a intervalli regolari
+
+    Args:
+        start_hour (int): Ora di inizio (0-23)
+        start_minute (int): Minuto di inizio (0-59)
+        minute_step (int): Intervallo in minuti tra le pubblicazioni
+        calendar_day (str): Riferimento al giorno del calendario
+        max_cycles (int): Numero massimo di pubblicazioni (default: 12)
+    """
+    from datetime import datetime, timedelta
+
+    current_time = datetime.now().replace(hour=start_hour, minute=start_minute, second=0, microsecond=0)
+
+    for _ in range(max_cycles):
+        print(f"Pubblicazione alle: {current_time.strftime('%H:%M')}")
+        publish_day(calendar_day, current_time.hour, current_time.minute)
+
+        # Aggiungi l'intervallo di tempo
+        current_time += timedelta(minutes=minute_step)
+
 #uploadPlus = "images/uploadBuzz.png"
 uploadPlus = "images/plusUpload.png"
 videoUploadArea = "images/uploadAreaVps.PNG"
@@ -247,7 +269,7 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/25giugno.PNG"
+day_on_calendar1 = "images/28giugno.PNG"
 day_on_calendar2 = "images/26giugno.PNG"
 day_on_calendar3 = "images/27giugno.PNG"
 day_on_calendar4 = "images/28giugno.PNG"
@@ -259,26 +281,37 @@ for i in range(12):
     #publish_now()
     #publish_before_midnight()
     #publish_day(day_on_calendar1)
-for i in range(12):
-    print(i)
-   # publish_now()
-    #publish_before_midnight()
-    publish_day(day_on_calendar4, 18, 30)
-for i in range(12):
-    print(i)
-    # publish_now()
-    # publish_before_midnight()
-    publish_day(day_on_calendar2)
-for i in range(12):
-    print(i)
-    # publish_now()
-    # publish_before_midnight()
-    publish_day(day_on_calendar3)
-for i in range(12):
-        print(i)
-        # publish_now()
-        # publish_before_midnight()
-        #publish_day(day_on_calendar4)
+schedule_posts(
+    start_hour=0,
+    start_minute=0,
+    minute_step=10,
+    calendar_day=day_on_calendar2,
+    max_cycles=12
+)
+
+schedule_posts(
+    start_hour=16,
+    start_minute=0,
+    minute_step=30,
+    calendar_day=day_on_calendar2,
+    max_cycles=12
+)
+
+schedule_posts(
+    start_hour=16,
+    start_minute=0,
+    minute_step=30,
+    calendar_day=day_on_calendar3,
+    max_cycles=12
+)
+schedule_posts(
+    start_hour=16,
+    start_minute=0,
+    minute_step=30,
+    calendar_day=day_on_calendar3,
+    max_cycles=12
+)
+
 
 send_message_cele("Automazione ASTROMOSTRO terminata tutto ok!")
 TTS.read("Attenzione Terminato tutto")
