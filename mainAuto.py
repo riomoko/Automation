@@ -1,12 +1,9 @@
 import sys
 import random
-import math
 from tts import TTS
-from windowAM import MainWindow
 from autoGui import AguiTools
 from PySide6.QtWidgets import QApplication
 import time
-import threading
 import pyautogui as agui
 from windowAM import MainWindow
 from messageTelegram import send_message_cele
@@ -150,7 +147,7 @@ def set_clock_time(hours, minutes):
         for i in range(24):
             agui.scroll(-900)
             time.sleep(random.uniform(0.05, 0.14))
-        for i in range(12 - math.ceil(minutes/5)):
+        for i in range(12 - (minutes // 5)):
             agui.scroll(900)
             time.sleep(random.uniform(0.05, 0.14))
         time.sleep(random.uniform(0.05, 0.15))
@@ -270,7 +267,7 @@ red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
 day_on_calendar1 = "images/28giugno.PNG"
-day_on_calendar2 = "images/26giugno.PNG"
+day_on_calendar2 = "images/26giugnorossa.PNG"
 day_on_calendar3 = "images/27giugno.PNG"
 day_on_calendar4 = "images/28giugno.PNG"
 agui_tools = AguiTools()
@@ -282,9 +279,9 @@ for i in range(12):
     #publish_before_midnight()
     #publish_day(day_on_calendar1)
 schedule_posts(
-    start_hour=0,
+    start_hour=17,
     start_minute=0,
-    minute_step=10,
+    minute_step=25,
     calendar_day=day_on_calendar2,
     max_cycles=12
 )
