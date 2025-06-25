@@ -1,5 +1,6 @@
 import sys
 import random
+import math
 from tts import TTS
 from windowAM import MainWindow
 from autoGui import AguiTools
@@ -9,6 +10,7 @@ import threading
 import pyautogui as agui
 from windowAM import MainWindow
 from messageTelegram import send_message_cele
+
 
 def drag_and_drop(imageToDrag, imageToDropOn):
     print("nuovo drag and drop 1")
@@ -120,6 +122,41 @@ def set_clock():
         time.sleep(random.uniform(0.05, 0.15))
         return loc
 
+def set_clock_time(hours, minutes):
+    image_check(clock)
+    time.sleep(random.uniform(0.05, 0.1))
+    agui_tools.moveToImageCenter(clock, random.uniform(0.1, 0.3))
+    time.sleep(random.uniform(0.05, 0.1))
+    TTS.read("clocko")
+    agui.click()
+    time.sleep(random.uniform(0.1, 0.2))
+
+    loc = agui.locateCenterOnScreen(clock, confidence=0.9)
+    if loc is not None:
+        print("CLOCK")
+        print(loc)
+        agui.moveTo(loc.x + 10, loc.y - 100, duration=0.1)
+        time.sleep(random.uniform(0.1, 0.2))
+        for i in range(24):
+            agui.scroll(-900)
+            time.sleep(random.uniform(0.05, 0.12))
+        for i in range(23-hours):
+            agui.scroll(900)
+            time.sleep(random.uniform(0.05, 0.12))
+
+        time.sleep(random.uniform(0.05, 0.15))
+        agui.moveTo(loc.x + 120, loc.y - 100, duration=0.1)
+        time.sleep(random.uniform(0.05, 0.15))
+        for i in range(24):
+            agui.scroll(-900)
+            time.sleep(random.uniform(0.05, 0.14))
+        for i in range(12 - math.ceil(minutes/5)):
+            agui.scroll(900)
+            time.sleep(random.uniform(0.05, 0.14))
+        time.sleep(random.uniform(0.05, 0.15))
+        return loc
+
+
 def publish_now():
     TTS.read("automazione Post Now")
     load_video()
@@ -163,12 +200,10 @@ def publish_before_midnight():
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
-def publish_day(image_day):
+def publish_day(image_day, hours, minutes):
     TTS.read("automazione Day")
     load_video()
-
     check_and_click(schedule)
-
     check_and_click(calendar_icon)
     #comment this if in not change mouth
     #check_and_click(cambioMese)
@@ -176,8 +211,8 @@ def publish_day(image_day):
     check_and_click(image_day)
 
     time.sleep(random.uniform(0.1, 0.2))
-
-    loc=set_clock()
+    #loc = set_clock()
+    loc=set_clock_time(hours, minutes)
 
     agui.moveTo(loc.x, loc.y , duration=0.1)
     pause()
@@ -222,13 +257,13 @@ send_message_cele("Automazione ASTROMOSTRO Inizio" )
 for i in range(12):
     print (i)
     #publish_now()
-    publish_before_midnight()
+    #publish_before_midnight()
     #publish_day(day_on_calendar1)
 for i in range(12):
     print(i)
    # publish_now()
     #publish_before_midnight()
-    publish_day(day_on_calendar1)
+    publish_day(day_on_calendar4, 18, 30)
 for i in range(12):
     print(i)
     # publish_now()
