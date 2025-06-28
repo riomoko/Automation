@@ -272,7 +272,7 @@ day_on_calendar3 = "images/30giugno.PNG"
 day_on_calendar4 = "images/1luglio.PNG"
 agui_tools = AguiTools()
 
-send_message_cele("Automazione ASTROMOSTRO Inizio" )
+send_message_cele_telegram("Automazione ASTROMOSTRO Inizio" )
 for i in range(12):
     print (i)
     #publish_now()
