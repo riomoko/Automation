@@ -280,7 +280,7 @@ for i in range(12):
     #publish_day(day_on_calendar1)
 schedule_posts(
     start_hour=18,
-    start_minute=0,
+    start_minute=25,
     minute_step=25,
     calendar_day=day_on_calendar1,
     max_cycles=12
@@ -288,7 +288,7 @@ schedule_posts(
 
 schedule_posts(
     start_hour=18,
-    start_minute=0,
+    start_minute=5,
     minute_step=25,
     calendar_day=day_on_calendar2,
     max_cycles=12
@@ -296,14 +296,14 @@ schedule_posts(
 
 schedule_posts(
     start_hour=18,
-    start_minute=0,
+    start_minute=45,
     minute_step=25,
     calendar_day=day_on_calendar3,
     max_cycles=12
 )
 schedule_posts(
     start_hour=18,
-    start_minute=0,
+    start_minute=30,
     minute_step=25,
     calendar_day=day_on_calendar4,
     max_cycles=12
