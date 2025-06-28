@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QApplication
 import time
 import pyautogui as agui
 from windowAM import MainWindow
-from messageTelegram import send_message_cele
+from messageTelegram import  send_message_cele_telegram
 
 
 def drag_and_drop(imageToDrag, imageToDropOn):
