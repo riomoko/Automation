@@ -63,7 +63,7 @@ def image_check(image, seconds=20):
         print(image + " missing")
         TTS.read(image + " missing")
         TTS.read("Programma terminato")
-        send_message_cele("Automazione BLOCCATA su immagine" + image )
+        send_message_cele_telegram("Automazione BLOCCATA su immagine" + image )
         sys.exit()
 
 def load_video():
@@ -310,7 +310,7 @@ schedule_posts(
 )
 
 
-send_message_cele("Automazione ASTROMOSTRO terminata tutto ok!")
+send_message_cele_telegram("Automazione ASTROMOSTRO terminata tutto ok!")
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
 
