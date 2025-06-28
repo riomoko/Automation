@@ -267,9 +267,9 @@ red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
 day_on_calendar1 = "images/28giugno.PNG"
-day_on_calendar2 = "images/26giugnorossa.PNG"
-day_on_calendar3 = "images/27giugno.PNG"
-day_on_calendar4 = "images/28giugno.PNG"
+day_on_calendar2 = "images/29giugno.PNG"
+day_on_calendar3 = "images/30giugno.PNG"
+day_on_calendar4 = "images/1luglio.PNG"
 agui_tools = AguiTools()
 
 send_message_cele("Automazione ASTROMOSTRO Inizio" )
@@ -282,30 +282,30 @@ schedule_posts(
     start_hour=18,
     start_minute=0,
     minute_step=25,
-    calendar_day=day_on_calendar3,
+    calendar_day=day_on_calendar1,
     max_cycles=12
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=18,
     start_minute=0,
-    minute_step=30,
+    minute_step=25,
     calendar_day=day_on_calendar2,
     max_cycles=12
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=18,
     start_minute=0,
-    minute_step=30,
+    minute_step=25,
     calendar_day=day_on_calendar3,
     max_cycles=12
 )
 schedule_posts(
-    start_hour=16,
+    start_hour=18,
     start_minute=0,
-    minute_step=30,
-    calendar_day=day_on_calendar3,
+    minute_step=25,
+    calendar_day=day_on_calendar4,
     max_cycles=12
 )
 

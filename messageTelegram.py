@@ -7,10 +7,11 @@ MESSAGE = 'Ciao!!!'
 
 url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
 
-def send_message_cele(message):
+def send_message_cele_telegram(message):
     send_message(TOKEN, CHAT_ID, message)
 
 def send_message(token, chat_id, message):
+
     url = f'https://api.telegram.org/bot{token}/sendMessage'
     payload = {
         'chat_id': chat_id,
