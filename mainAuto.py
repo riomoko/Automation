@@ -229,6 +229,14 @@ def publish_day(image_day, hours, minutes):
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
+def get_random_minutes():
+    values = [0, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+    return random.choice(values)
+
+def get_random_steps():
+    values = [  20, 25]
+    return random.choice(values)
+
 
 def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycles=12):
     """
@@ -280,31 +288,31 @@ for i in range(12):
     #publish_day(day_on_calendar1)
 schedule_posts(
     start_hour=18,
-    start_minute=25,
-    minute_step=25,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
     calendar_day=day_on_calendar1,
     max_cycles=12
 )
 
 schedule_posts(
     start_hour=18,
-    start_minute=5,
-    minute_step=25,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
     max_cycles=12
 )
 
 schedule_posts(
     start_hour=18,
-    start_minute=45,
-    minute_step=25,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
     max_cycles=12
 )
 schedule_posts(
     start_hour=18,
-    start_minute=30,
-    minute_step=25,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
     max_cycles=12
 )
