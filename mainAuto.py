@@ -267,17 +267,17 @@ iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
 uploaded = "images/uploaded_vps.PNG"
 post = "images/Post_vps.PNG"
-views = "images/views_vps.PNG"
+views = "images/views_vps_old.PNG"
 successivo = "images/successivo_vps.PNG"
 schedule = "images/schedule_vps.PNG"
 clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/6luglio.PNG"
-day_on_calendar2 = "images/7luglio.PNG"
-day_on_calendar3 = "images/8luglio.PNG"
-day_on_calendar4 = "images/9luglio.PNG"
+day_on_calendar1 = "images/14luglio.PNG"
+day_on_calendar2 = "images/15luglio.PNG"
+day_on_calendar3 = "images/16luglio.PNG"
+day_on_calendar4 = "images/17luglio.PNG"
 agui_tools = AguiTools()
 
 send_message_cele_telegram("Automazione ASTROMOSTRO Inizio" )
@@ -310,7 +310,7 @@ schedule_posts(
     max_cycles=12
 )
 schedule_posts(
-    start_hour=18,
+    start_hour=15,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
