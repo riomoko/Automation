@@ -274,10 +274,10 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/22luglio.PNG"
-day_on_calendar2 = "images/23luglio.PNG"
-day_on_calendar3 = "images/24luglio.PNG"
-day_on_calendar4 = "images/25luglio.PNG"
+day_on_calendar1 = "images/26luglio.PNG"
+day_on_calendar2 = "images/27luglio.PNG"
+day_on_calendar3 = "images/28luglio.PNG"
+day_on_calendar4 = "images/29luglio.PNG"
 
 agui_tools = AguiTools()
 
