@@ -162,7 +162,7 @@ def publish_now():
         check_and_click(cancel)
 
     check_and_click(post)
-    TTS.read("posto")
+
     check_and_click(post)
     TTS.read("posto")
     image_check(successivo)
@@ -283,7 +283,7 @@ day_on_calendar1 = "images/30luglio.PNG"
 day_on_calendar2 = "images/31luglio.PNG"
 day_on_calendar3 = "images/1agosto.PNG"
 day_on_calendar4 = "images/2agosto.PNG"
-cancel = "images/cancel.PNG"
+cancel = "images/skipcheck.PNG"
 skipcontrol=True
 
 agui_tools = AguiTools()
