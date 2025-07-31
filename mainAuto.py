@@ -158,12 +158,13 @@ def publish_now():
     TTS.read("automazione Post Now")
     load_video()
 
+    if skipcontrol:
+        check_and_click(cancel)
+
     check_and_click(post)
     TTS.read("posto")
-
-    time.sleep(random.uniform(1, 2.1))
-    TTS.read("emozione!!! ")
-    image_check(views)
+    check_and_click(post)
+    TTS.read("posto")
     image_check(successivo)
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
@@ -200,6 +201,10 @@ def publish_before_midnight():
 def publish_day(image_day, hours, minutes):
     TTS.read("automazione Day")
     load_video()
+
+    if skipcontrol:
+        check_and_click(cancel)
+
     check_and_click(schedule)
     check_and_click(calendar_icon)
     #comment this if in not change mouth
@@ -278,22 +283,18 @@ day_on_calendar1 = "images/30luglio.PNG"
 day_on_calendar2 = "images/31luglio.PNG"
 day_on_calendar3 = "images/1agosto.PNG"
 day_on_calendar4 = "images/2agosto.PNG"
+cancel = "images/cancel.PNG"
+skipcontrol=True
 
 agui_tools = AguiTools()
 
 send_message_cele_telegram("Automazione ASTROMOSTRO Inizio" )
 for i in range(12):
     print (i)
-    #publish_now()
+    publish_now()
     #publish_before_midnight()
     #publish_day(day_on_calendar1)
-schedule_posts(
-    start_hour=18,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar1,
-    max_cycles=12
-)
+
 
 schedule_posts(
     start_hour=18,
