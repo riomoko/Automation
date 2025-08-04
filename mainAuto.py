@@ -295,7 +295,6 @@ for i in range(12):
     #publish_before_midnight()
     #publish_day(day_on_calendar1)
 
-
 schedule_posts(
     start_hour=18,
     start_minute=get_random_minutes(),
