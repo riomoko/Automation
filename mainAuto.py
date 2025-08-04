@@ -279,12 +279,12 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/30luglio.PNG"
-day_on_calendar2 = "images/31luglio.PNG"
-day_on_calendar3 = "images/1agosto.PNG"
-day_on_calendar4 = "images/2agosto.PNG"
+day_on_calendar1 = "images/4agosto.PNG"
+day_on_calendar2 = "images/5agosto.PNG"
+day_on_calendar3 = "images/6agosto.PNG"
+day_on_calendar4 = "images/7agoato.PNG"
 cancel = "images/skipcheck.PNG"
-skipcontrol=True
+skipcontrol=False
 
 agui_tools = AguiTools()
 
@@ -300,7 +300,7 @@ schedule_posts(
     start_hour=18,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
-    calendar_day=day_on_calendar2,
+    calendar_day=day_on_calendar1,
     max_cycles=12
 )
 
@@ -308,14 +308,14 @@ schedule_posts(
     start_hour=18,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
-    calendar_day=day_on_calendar3,
+    calendar_day=day_on_calendar2,
     max_cycles=12
 )
 schedule_posts(
     start_hour=15,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
-    calendar_day=day_on_calendar4,
+    calendar_day=day_on_calendar3,
     max_cycles=12
 )
 
