@@ -284,7 +284,7 @@ day_on_calendar2 = "images/8agosto.PNG"
 day_on_calendar3 = "images/9agosto.PNG"
 day_on_calendar4 = "images/10agosto.PNG"
 cancel = "images/skipcheck.PNG"
-skipcontrol=True
+skipcontrol=False
 
 agui_tools = AguiTools()
 
