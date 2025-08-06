@@ -282,7 +282,7 @@ cambioMese="images/CambioMese.PNG"
 day_on_calendar1 = "images/7agosto.PNG"
 day_on_calendar2 = "images/8agosto.PNG"
 day_on_calendar3 = "images/9agosto.PNG"
-day_on_calendar4 = "images/10agoato.PNG"
+day_on_calendar4 = "images/10agosto.PNG"
 cancel = "images/skipcheck.PNG"
 skipcontrol=True
 
@@ -307,7 +307,7 @@ schedule_posts(
     start_hour=18,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
-    calendar_day=day_on_calendar1,
+    calendar_day=day_on_calendar2,
     max_cycles=12
 )
 
@@ -315,14 +315,14 @@ schedule_posts(
     start_hour=18,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
-    calendar_day=day_on_calendar2,
+    calendar_day=day_on_calendar3,
     max_cycles=12
 )
 schedule_posts(
     start_hour=15,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
-    calendar_day=day_on_calendar3,
+    calendar_day=day_on_calendar4,
     max_cycles=12
 )
 
