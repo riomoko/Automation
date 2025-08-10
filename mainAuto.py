@@ -242,6 +242,10 @@ def get_random_steps():
     values = [  20, 25]
     return random.choice(values)
 
+def get_random_steps_short():
+    values = [  5, 10,15]
+    return random.choice(values)
+
 
 def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycles=12):
     """
@@ -279,10 +283,10 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/7agosto.PNG"
-day_on_calendar2 = "images/8agosto.PNG"
-day_on_calendar3 = "images/9agosto.PNG"
-day_on_calendar4 = "images/10agosto.PNG"
+day_on_calendar1 = "images/11agosto.PNG"
+day_on_calendar2 = "images/12agosto.PNG"
+day_on_calendar3 = "images/13agosto.PNG"
+day_on_calendar4 = "images/14agosto.PNG"
 cancel = "images/skipcheck.PNG"
 skipcontrol=False
 
@@ -321,7 +325,7 @@ schedule_posts(
 schedule_posts(
     start_hour=15,
     start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
+    minute_step=get_random_steps_short(),
     calendar_day=day_on_calendar4,
     max_cycles=12
 )
