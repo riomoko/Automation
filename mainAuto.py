@@ -283,10 +283,10 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/24agosto.PNG"
-day_on_calendar2 = "images/25agosto.PNG"
-day_on_calendar3 = "images/26agosto.PNG"
-day_on_calendar4 = "images/27agosto.PNG"
+day_on_calendar1 = "images/25agosto.PNG"
+day_on_calendar2 = "images/26agosto.PNG"
+day_on_calendar3 = "images/27agosto.PNG"
+day_on_calendar4 = "images/28agosto.PNG"
 cancel = "images/skipcheck.PNG"
 skipcontrol=False
 
@@ -295,7 +295,7 @@ agui_tools = AguiTools()
 send_message_cele_telegram("Automazione ASTROMOSTRO Inizio" )
 for i in range(12):
     print (i)
-    #publish_now()
+    publish_now()
     #publish_before_midnight()
     #publish_day(day_on_calendar1)
 
