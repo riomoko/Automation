@@ -322,6 +322,7 @@ schedule_posts(
     calendar_day=day_on_calendar3,
     max_cycles=12
 )
+
 schedule_posts(
     start_hour=15,
     start_minute=get_random_minutes(),
