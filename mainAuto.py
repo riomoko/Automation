@@ -206,6 +206,7 @@ def publish_day(image_day, hours, minutes):
         check_and_click(cancel)
 
     check_and_click(schedule)
+    check_and_click(schedule)
     check_and_click(calendar_icon)
     #comment this if in not change mouth
     #check_and_click(cambioMese)
