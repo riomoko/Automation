@@ -284,12 +284,12 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/11ottobre.PNG"
-day_on_calendar2 = "images/12ottobre.PNG"
-day_on_calendar3 = "images/13ottobre.PNG"
-day_on_calendar4 = "images/14ottobre.PNG"
-day_on_calendar5 = "images/11ottobre.PNG"
-day_on_calendar6 = "images/11ottobre.PNG"
+day_on_calendar1 = "images/16ottobre.PNG"
+day_on_calendar2 = "images/17ottobre.PNG"
+day_on_calendar3 = "images/18ottobre.PNG"
+day_on_calendar4 = "images/19ottobre.PNG"
+day_on_calendar5 = "images/20ottobre.PNG"
+day_on_calendar6 = "images/21ottobre.PNG"
 day_on_calendar7 = "images/11ottobre.PNG"
 cancel = "images/skipcheck.PNG"
 skipcontrol = False
@@ -304,7 +304,7 @@ for i in range(12):
     #publish_day(day_on_calendar1)
 
 schedule_posts(
-    start_hour=18,
+    start_hour=17,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar1,
@@ -312,7 +312,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=18,
+    start_hour=15,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
@@ -320,7 +320,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=18,
+    start_hour=15,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
@@ -328,12 +328,30 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=18,
+    start_hour=15,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
     max_cycles=1
 )
+
+schedule_posts(
+    start_hour=15,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar5,
+    max_cycles=1
+)
+
+schedule_posts(
+    start_hour=15,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar6,
+    max_cycles=1
+)
+
+
 
 
 
