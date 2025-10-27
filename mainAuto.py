@@ -198,7 +198,7 @@ def publish_before_midnight():
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
-def publish_day(image_day, hours, minutes):
+def publish_day(image_day, hours, minutes, cambioMeseDecision=False):
     TTS.read("automazione Day")
     load_video()
 
@@ -209,7 +209,8 @@ def publish_day(image_day, hours, minutes):
     check_and_click(schedule)
     check_and_click(calendar_icon)
     #comment this if in not change mouth
-    #check_and_click(cambioMese)
+    if cambioMeseDecision:
+        check_and_click(cambioMese)
 
     check_and_click(image_day)
 
@@ -248,7 +249,7 @@ def get_random_steps_short():
     return random.choice(values)
 
 
-def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycles=12):
+def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycles=12, changeDayPar=False):
     """
     Programma le pubblicazioni a intervalli regolari
 
@@ -265,7 +266,7 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
 
     for _ in range(max_cycles):
         print(f"Pubblicazione alle: {current_time.strftime('%H:%M')}")
-        publish_day(calendar_day, current_time.hour, current_time.minute)
+        publish_day(calendar_day, current_time.hour, current_time.minute, changeDayPar)
 
         # Aggiungi l'intervallo di tempo
         current_time += timedelta(minutes=minute_step)
@@ -284,13 +285,13 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/16ottobre.PNG"
-day_on_calendar2 = "images/17ottobre.PNG"
-day_on_calendar3 = "images/18ottobre.PNG"
-day_on_calendar4 = "images/19ottobre.PNG"
-day_on_calendar5 = "images/20ottobre.PNG"
-day_on_calendar6 = "images/21ottobre.PNG"
-day_on_calendar7 = "images/11ottobre.PNG"
+day_on_calendar1 = "images/28ottobre.PNG"
+day_on_calendar2 = "images/29ottobre.PNG"
+day_on_calendar3 = "images/30ottobre.PNG"
+day_on_calendar4 = "images/31ottobre.PNG"
+day_on_calendar5 = "images/1novembre.PNG"
+day_on_calendar6 = "images/2novembre.PNG"
+day_on_calendar7 = "images/3novembre.PNG"
 cancel = "images/skipcheck.PNG"
 skipcontrol = False
 
@@ -303,12 +304,15 @@ for i in range(12):
     #publish_before_midnight()
     #publish_day(day_on_calendar1)
 
+
+
 schedule_posts(
-    start_hour=17,
+    start_hour=15,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar1,
-    max_cycles=1
+    max_cycles=1,
+    changeDay = False
 )
 
 schedule_posts(
@@ -316,7 +320,8 @@ schedule_posts(
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
-    max_cycles=1
+    max_cycles=1,
+    changeDay= False
 )
 
 schedule_posts(
@@ -324,7 +329,8 @@ schedule_posts(
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
-    max_cycles=1
+    max_cycles=1,
+    changeDay= False
 )
 
 schedule_posts(
@@ -332,7 +338,8 @@ schedule_posts(
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
-    max_cycles=1
+    max_cycles=1,
+    changeDay= False
 )
 
 schedule_posts(
@@ -340,7 +347,8 @@ schedule_posts(
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar5,
-    max_cycles=1
+    max_cycles=1,
+    changeDay= True
 )
 
 schedule_posts(
@@ -348,8 +356,20 @@ schedule_posts(
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar6,
-    max_cycles=1
+    max_cycles=1,
+    changeDay= True
 )
+
+schedule_posts(
+    start_hour=15,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar7,
+    max_cycles=1,
+    changeDay= True
+)
+
+
 
 
 
