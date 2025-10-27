@@ -249,7 +249,7 @@ def get_random_steps_short():
     return random.choice(values)
 
 
-def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycles=12, changeDayPar=False):
+def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycles=12, change_month_par=False):
     """
     Programma le pubblicazioni a intervalli regolari
 
@@ -266,7 +266,7 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
 
     for _ in range(max_cycles):
         print(f"Pubblicazione alle: {current_time.strftime('%H:%M')}")
-        publish_day(calendar_day, current_time.hour, current_time.minute, changeDayPar)
+        publish_day(calendar_day, current_time.hour, current_time.minute, change_month_par)
 
         # Aggiungi l'intervallo di tempo
         current_time += timedelta(minutes=minute_step)
@@ -293,7 +293,7 @@ day_on_calendar5 = "images/1novembre.PNG"
 day_on_calendar6 = "images/2novembre.PNG"
 day_on_calendar7 = "images/3novembre.PNG"
 cancel = "images/skipcheck.PNG"
-skipcontrol = False
+skipcontrol = True
 
 agui_tools = AguiTools()
 
@@ -312,7 +312,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar1,
     max_cycles=1,
-    changeDay = False
+    change_month_par= False
 )
 
 schedule_posts(
@@ -321,7 +321,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
     max_cycles=1,
-    changeDay= False
+    change_month_par= False
 )
 
 schedule_posts(
@@ -330,7 +330,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
     max_cycles=1,
-    changeDay= False
+    change_month_par= False
 )
 
 schedule_posts(
@@ -339,7 +339,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
     max_cycles=1,
-    changeDay= False
+    change_month_par= False
 )
 
 schedule_posts(
@@ -348,7 +348,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar5,
     max_cycles=1,
-    changeDay= True
+    change_month_par= True
 )
 
 schedule_posts(
@@ -357,7 +357,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar6,
     max_cycles=1,
-    changeDay= True
+    change_month_par= True
 )
 
 schedule_posts(
@@ -366,7 +366,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar7,
     max_cycles=1,
-    changeDay= True
+    change_month_par= True
 )
 
 
