@@ -79,7 +79,7 @@ def load_video():
     image_check(hashAstromostro, seconds=120)
     TTS.read("tag")
     agui_tools.moveToImageCenter(hashAstromostro, random.uniform(0.3, 1.9))
-    for i in range(15):
+    for i in range(30):
         agui.click()
         #  TTS.read("t")
         pause()
@@ -285,15 +285,19 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/4novembre.PNG"
-day_on_calendar2 = "images/5novembre.PNG"
-day_on_calendar3 = "images/6novembre.PNG"
-day_on_calendar4 = "images/7novembre.PNG"
-day_on_calendar5 = "images/8novembre.PNG"
-day_on_calendar6 = "images/9novembre.PNG"
-day_on_calendar7 = "images/10novembre.PNG"
+day_on_calendar1 = "images/12novembre.PNG"
+day_on_calendar2 = "images/13novembre.PNG"
+day_on_calendar3 = "images/14novembre.PNG"
+day_on_calendar4 = "images/15novembre.PNG"
+day_on_calendar5 = "images/16novembre.PNG"
+day_on_calendar6 = "images/17novembre.PNG"
+day_on_calendar7 = "images/18novembre.PNG"
+day_on_calendar8 = "images/19novembre.PNG"
+day_on_calendar9 = "images/20novembre.PNG"
+day_on_calendar10 = "images/21novembre.PNG"
+day_on_calendar11 = "images/22novembre.PNG"
 cancel = "images/skipcheck.PNG"
-skipcontrol = True
+skipcontrol = False
 
 agui_tools = AguiTools()
 
@@ -305,9 +309,8 @@ for i in range(12):
     #publish_day(day_on_calendar1)
 
 
-
 schedule_posts(
-    start_hour=16,
+    start_hour=12,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar1,
@@ -315,8 +318,9 @@ schedule_posts(
     change_month_par= False
 )
 
+
 schedule_posts(
-    start_hour=16,
+    start_hour=12,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
@@ -325,7 +329,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=13,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
@@ -334,7 +338,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=17,
+    start_hour=13,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
@@ -343,7 +347,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=17,
+    start_hour=14,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar5,
@@ -352,7 +356,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=18,
+    start_hour=14,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar6,
@@ -369,6 +373,41 @@ schedule_posts(
     change_month_par= False
 )
 
+schedule_posts(
+    start_hour=14,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar8,
+    max_cycles=1,
+    change_month_par= False
+)
+
+schedule_posts(
+    start_hour=15,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar9,
+    max_cycles=1,
+    change_month_par= False
+)
+
+schedule_posts(
+    start_hour=15,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar10,
+    max_cycles=1,
+    change_month_par= False
+)
+
+schedule_posts(
+    start_hour=16,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar11,
+    max_cycles=1,
+    change_month_par= False
+)
 
 
 
@@ -376,8 +415,7 @@ schedule_posts(
 
 
 
-
-send_message_cele_telegram("Automazione ASTROMOSTRO terminata tutto ok!")
+send_message_cele_telegram("Automazione ASTROMOSTRO Python terminata tutto ok!")
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
 
