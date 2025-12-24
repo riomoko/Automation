@@ -285,12 +285,12 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/14dicembre.PNG"
-day_on_calendar2 = "images/15dicembre.PNG"
-day_on_calendar3 = "images/16dicembre.PNG"
-day_on_calendar4 = "images/17dicembre.PNG"
-day_on_calendar5 = "images/18dicembre.PNG"
-day_on_calendar6 = "images/19dicembre.PNG"
+day_on_calendar1 = "images/24dicembre.PNG"
+day_on_calendar2 = "images/25dicembre.PNG"
+day_on_calendar3 = "images/26dicembre.PNG"
+day_on_calendar4 = "images/27dicembre.PNG"
+day_on_calendar5 = "images/28dicembre.PNG"
+day_on_calendar6 = "images/29dicembre.PNG"
 day_on_calendar7 = "images/20dicembre.PNG"
 day_on_calendar8 = "images/21dicembre.PNG"
 day_on_calendar9 = "images/22dicembre.PNG"
@@ -366,41 +366,6 @@ schedule_posts(
 
 
 
-schedule_posts(
-    start_hour=14,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar7,
-    max_cycles=1,
-    change_month_par= False
-)
-
-schedule_posts(
-    start_hour=15,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar8,
-    max_cycles=1,
-    change_month_par= False
-)
-
-schedule_posts(
-    start_hour=14,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar9,
-    max_cycles=1,
-    change_month_par= False
-)
-
-schedule_posts(
-    start_hour=15,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar10,
-    max_cycles=1,
-    change_month_par= False
-)
 
 
 
