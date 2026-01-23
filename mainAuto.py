@@ -359,7 +359,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar5,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 schedule_posts(
