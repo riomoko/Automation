@@ -310,7 +310,7 @@ skipcontrol = False
 
 agui_tools = AguiTools()
 
-send_message_cele_telegram("Automazione ASTROMOSTRO Inizio" )
+send_message_cele_telegram("Automazione Python ASTROMOSTRO Inizio" )
 for i in range(12):
     print (i)
     #publish_now()
