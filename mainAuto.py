@@ -285,19 +285,19 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/28gennaio.PNG"
-day_on_calendar2 = "images/29gennaio.PNG"
-day_on_calendar3 = "images/30gennaio.PNG"
-day_on_calendar4 = "images/31gennaio.PNG"
-day_on_calendar5 = "images/1febbraio.PNG"
-day_on_calendar6 = "images/2febbraio.PNG"
-day_on_calendar7 = "images/3febbraio.PNG"
-day_on_calendar8 = "images/4febbraio.PNG"
-day_on_calendar9 = "images/5febbraio.PNG"
-day_on_calendar10 = "images/6febbraio.PNG"
-day_on_calendar11 = "images/7febbraio.PNG"
-day_on_calendar12 = "images/8febbraio.PNG"
-day_on_calendar13 = "images/9febbraio.PNG"
+day_on_calendar1 = "images/16febbraio.PNG"
+day_on_calendar2 = "images/17febbraio.PNG"
+day_on_calendar3 = "images/18febbraio.PNG"
+day_on_calendar4 = "images/19febbraio.PNG"
+day_on_calendar5 = "images/20febbraio.PNG"
+day_on_calendar6 = "images/21febbraio.PNG"
+day_on_calendar7 = "images/22febbraio.PNG"
+day_on_calendar8 = "images/23febbraio.PNG"
+day_on_calendar9 = "images/24febbraio.PNG"
+day_on_calendar10 = "images/25febbraio.PNG"
+day_on_calendar11 = "images/26febbraio.PNG"
+day_on_calendar12 = "images/27febbraio.PNG"
+day_on_calendar13 = "images/28febbraio.PNG"
 day_on_calendar14 = "images/10febbraio.PNG"
 day_on_calendar15 = "images/11febbraio.PNG"
 day_on_calendar16 = "images/12febbraio.PNG"
@@ -318,7 +318,7 @@ for i in range(12):
     #publish_day(day_on_calendar1)
 
 schedule_posts(
-    start_hour=16,
+    start_hour=17,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar1,
@@ -327,7 +327,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=17,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
@@ -336,7 +336,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=17,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
@@ -345,7 +345,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=17,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
@@ -354,7 +354,7 @@ schedule_posts(
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=17,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar5,
@@ -368,7 +368,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar6,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 
@@ -378,7 +378,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar7,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 schedule_posts(
@@ -387,7 +387,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar8,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 schedule_posts(
@@ -396,7 +396,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar9,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 schedule_posts(
@@ -405,7 +405,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar10,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 schedule_posts(
@@ -414,7 +414,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar11,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 schedule_posts(
@@ -423,71 +423,10 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar12,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
-schedule_posts(
-    start_hour=16,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar13,
-    max_cycles=1,
-    change_month_par= True
-)
 
-schedule_posts(
-    start_hour=14,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar14,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=16,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar15,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=16,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar16,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar17,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar18,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar19,
-    max_cycles=1,
-    change_month_par= True
-)
 
 
 
