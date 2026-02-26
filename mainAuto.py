@@ -285,22 +285,22 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/16febbraio.PNG"
-day_on_calendar2 = "images/17febbraio.PNG"
-day_on_calendar3 = "images/18febbraio.PNG"
-day_on_calendar4 = "images/19febbraio.PNG"
-day_on_calendar5 = "images/20febbraio.PNG"
-day_on_calendar6 = "images/21febbraio.PNG"
-day_on_calendar7 = "images/22febbraio.PNG"
-day_on_calendar8 = "images/23febbraio.PNG"
-day_on_calendar9 = "images/24febbraio.PNG"
-day_on_calendar10 = "images/25febbraio.PNG"
-day_on_calendar11 = "images/26febbraio.PNG"
-day_on_calendar12 = "images/27febbraio.PNG"
-day_on_calendar13 = "images/28febbraio.PNG"
-day_on_calendar14 = "images/10febbraio.PNG"
-day_on_calendar15 = "images/11febbraio.PNG"
-day_on_calendar16 = "images/12febbraio.PNG"
+day_on_calendar1 = "images/28febbraio.PNG"
+day_on_calendar2 = "images/1marzo.PNG"
+day_on_calendar3 = "images/2marzo.PNG"
+day_on_calendar4 = "images/3marzo.PNG"
+day_on_calendar5 = "images/4marzo.PNG"
+day_on_calendar6 = "images/5marzo.PNG"
+day_on_calendar7 = "images/6marzo.PNG"
+day_on_calendar8 = "images/7marzo.PNG"
+day_on_calendar9 = "images/8marzo.PNG"
+day_on_calendar10 = "images/9marzo.PNG"
+day_on_calendar11 = "images/10marzo.PNG"
+day_on_calendar12 = "images/11marzo.PNG"
+day_on_calendar13 = "images/12marzo.PNG"
+day_on_calendar14 = "images/13marzo.PNG"
+day_on_calendar15 = "images/14marzo.PNG"
+day_on_calendar16 = "images/15marzo.PNG"
 day_on_calendar17 = "images/13febbraio.PNG"
 day_on_calendar18 = "images/14febbraio.PNG"
 day_on_calendar19 = "images/15febbraio.PNG"
@@ -332,7 +332,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -341,7 +341,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -350,7 +350,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -359,7 +359,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar5,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -368,7 +368,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar6,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 
@@ -378,7 +378,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar7,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -387,7 +387,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar8,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -396,7 +396,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar9,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -405,7 +405,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar10,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -414,16 +414,34 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar11,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
-    start_hour=16,
+    start_hour=14,
     start_minute=get_random_minutes(),
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar12,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=14,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar13,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=14,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar14,
+    max_cycles=1,
+    change_month_par= True
 )
 
 
@@ -439,7 +457,7 @@ schedule_posts(
 
 
 
-send_message_cele_telegram("Automazione ASTROMOSTRO Python terminata tutto ok!")
+send_message_cele_telegram("Python Automazione ASTROMOSTRO terminata tutto ok!")
 TTS.read("Attenzione Terminato tutto")
 sys.exit(0)
 
