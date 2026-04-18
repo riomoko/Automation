@@ -381,7 +381,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar7,
     max_cycles=1,
-    change_month_par=  True
+    change_month_par=  False
 )
 
 schedule_posts(
@@ -390,7 +390,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar8,
     max_cycles=1,
-    change_month_par=  True
+    change_month_par=  False
 )
 
 schedule_posts(
@@ -399,7 +399,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar9,
     max_cycles=1,
-    change_month_par=  True
+    change_month_par= False
 )
 
 schedule_posts(
@@ -408,7 +408,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar10,
     max_cycles=1,
-    change_month_par= True
+    change_month_par= False
 )
 
 
