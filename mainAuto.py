@@ -273,7 +273,8 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
 
 #uploadPlus = "images/uploadBuzz.png"
 uploadPlus = "images/plusUpload.png"
-videoUploadArea = "images/uploadAreaVps_old.PNG"
+#videoUploadArea = "images/uploadAreaVps_old.PNG"
+videoUploadArea = "images/uploadAreaVps.PNG"
 iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
 uploaded = "images/uploaded_vps.PNG"
