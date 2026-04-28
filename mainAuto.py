@@ -273,8 +273,8 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
 
 #uploadPlus = "images/uploadBuzz.png"
 uploadPlus = "images/plusUpload.png"
-#videoUploadArea = "images/uploadAreaVps_old.PNG"
-videoUploadArea = "images/uploadAreaVps.PNG"
+videoUploadArea = "images/uploadAreaVps_old.PNG"
+#videoUploadArea = "images/uploadAreaVps.PNG"
 iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
 uploaded = "images/uploaded_vps.PNG"
@@ -286,26 +286,26 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
-day_on_calendar1 = "images/21aprile.PNG"
-day_on_calendar2 = "images/22aprile.PNG"
-day_on_calendar3 = "images/23aprile.PNG"
-day_on_calendar4 = "images/24aprile.PNG"
-day_on_calendar5 = "images/25aprile.PNG"
-day_on_calendar6 = "images/26aprile.PNG"
-day_on_calendar7 = "images/27aprile.PNG"
-day_on_calendar8 = "images/28aprile.PNG"
-day_on_calendar9 = "images/29aprile.PNG"
-day_on_calendar10 = "images/30aprile.PNG"
-day_on_calendar11 = "images/11aprile.PNG"
-day_on_calendar12 = "images/12aprile.PNG"
-day_on_calendar13 = "images/13aprile.PNG"
-day_on_calendar14 = "images/14aprile.PNG"
-day_on_calendar15 = "images/15aprile.PNG"
-day_on_calendar16 = "images/16aprile.PNG"
-day_on_calendar17 = "images/17aprile.PNG"
-day_on_calendar18 = "images/18aprile.PNG"
-day_on_calendar19 = "images/19aprile.PNG"
-day_on_calendar20 = "images/20aprile.PNG"
+day_on_calendar1 = "images/1maggio.PNG"
+day_on_calendar2 = "images/2maggio.PNG"
+day_on_calendar3 = "images/3maggio.PNG"
+day_on_calendar4 = "images/4maggio.PNG"
+day_on_calendar5 = "images/5maggio.PNG"
+day_on_calendar6 = "images/6maggio.PNG"
+day_on_calendar7 = "images/7maggio.PNG"
+day_on_calendar8 = "images/8maggio.PNG"
+day_on_calendar9 = "images/9maggio.PNG"
+day_on_calendar10 = "images/10maggio.PNG"
+day_on_calendar11 = "images/11maggio.PNG"
+day_on_calendar12 = "images/12maggio.PNG"
+day_on_calendar13 = "images/13maggio.PNG"
+day_on_calendar14 = "images/14maggio.PNG"
+day_on_calendar15 = "images/15maggio.PNG"
+day_on_calendar16 = "images/16maggio.PNG"
+day_on_calendar17 = "images/17maggio.PNG"
+day_on_calendar18 = "images/18maggio.PNG"
+day_on_calendar19 = "images/19maggio.PNG"
+#day_on_calendar20 = "images/20aprile.PNG"
 
 
 
@@ -327,7 +327,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar1,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -336,7 +336,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar2,
     max_cycles=1,
-    change_month_par=  False
+    change_month_par=  True
 )
 
 schedule_posts(
@@ -345,7 +345,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar3,
     max_cycles=1,
-    change_month_par=  False
+    change_month_par=  True
 )
 
 schedule_posts(
@@ -354,7 +354,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar4,
     max_cycles=1,
-    change_month_par=   False
+    change_month_par=  True
 )
 
 schedule_posts(
@@ -363,7 +363,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar5,
     max_cycles=1,
-    change_month_par=  False
+    change_month_par=  True
 )
 
 schedule_posts(
@@ -372,7 +372,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar6,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 
@@ -382,7 +382,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar7,
     max_cycles=1,
-    change_month_par=  False
+    change_month_par=  True
 )
 
 schedule_posts(
@@ -391,7 +391,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar8,
     max_cycles=1,
-    change_month_par=  False
+    change_month_par=  True
 )
 
 schedule_posts(
@@ -400,7 +400,7 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar9,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
 schedule_posts(
@@ -409,9 +409,89 @@ schedule_posts(
     minute_step=get_random_steps(),
     calendar_day=day_on_calendar10,
     max_cycles=1,
-    change_month_par= False
+    change_month_par= True
 )
 
+schedule_posts(
+    start_hour=12,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar11,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=13,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar12,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=14,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar13,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=13,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar14,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=13,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar15,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=13,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar16,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=13,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar17,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=13,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar18,
+    max_cycles=1,
+    change_month_par= True
+)
+
+schedule_posts(
+    start_hour=13,
+    start_minute=get_random_minutes(),
+    minute_step=get_random_steps(),
+    calendar_day=day_on_calendar19,
+    max_cycles=1,
+    change_month_par= True
+)
 
 
 
