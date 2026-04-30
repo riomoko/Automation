@@ -189,9 +189,13 @@
                     })
                 });
                 const result = await response.json();
-                alert(result.message);
+                if (result.status === 'error') {
+                    alert("ERRORE:\n" + result.message);
+                } else {
+                    alert(result.message);
+                }
             } catch (error) {
-                alert("Errore nell'avvio dell'automazione");
+                alert("Errore di rete: " + error.message);
             } finally {
                 btn.innerText = "Avvia Automazione";
                 btn.disabled = false;
