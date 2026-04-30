@@ -127,9 +127,10 @@ def load_video():
         TTS.read("bottoncino click")
          # agui.click()
         # agui_tools.moveToImageCenter(bottoncino, random.uniform(0.3, .6))
-        # agui.click()
-        agui_tools.moveToImageCenter(SaveThumb, random.uniform(0.3, .6))
-        agui.click()
+        #agui.click()
+        #agui_tools.moveToImageCenter(SaveThumb, random.uniform(0.3, .6))
+        #agui.click()
+        check_and_click(SaveThumb, 8)
         pause()
         pause()
         pause()
@@ -320,8 +321,8 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
         # Aggiungi l'intervallo di tempo
         current_time += timedelta(minutes=minute_step)
 
-uploadPlus = "images/uploadBuzz.png"
-uploadPlus = "images/plusUpload.png"
+uploadPlus = "images/uploadBuzz.PNG"
+uploadPlus = "images/plusUpload.PNG"
 videoUploadArea = "images/uploadAreaVps_old.PNG"
 #videoUploadArea = "images/uploadAreaVps.PNG"
 iconAM = "images/am.png"
@@ -342,25 +343,7 @@ blackFrame="images/blackFrame.PNG"
 blackFrame2="images/blackFrame2.PNG"
 bottoncino="images/bottoncino.PNG"
 day_on_calendar1 = "images/1maggio.PNG"
-day_on_calendar2 = "images/2maggio.PNG"
-day_on_calendar3 = "images/3maggio.PNG"
-day_on_calendar4 = "images/4maggio.PNG"
-day_on_calendar5 = "images/5maggio.PNG"
-day_on_calendar6 = "images/6maggio.PNG"
-day_on_calendar7 = "images/7maggio.PNG"
-day_on_calendar8 = "images/8maggio.PNG"
-day_on_calendar9 = "images/9maggio.PNG"
-day_on_calendar10 = "images/10maggio.PNG"
-day_on_calendar11 = "images/11maggio.PNG"
-day_on_calendar12 = "images/12maggio.PNG"
-day_on_calendar13 = "images/13maggio.PNG"
-day_on_calendar14 = "images/14maggio.PNG"
-day_on_calendar15 = "images/15maggio.PNG"
-day_on_calendar16 = "images/16maggio.PNG"
-day_on_calendar17 = "images/17maggio.PNG"
-day_on_calendar18 = "images/18maggio.PNG"
-day_on_calendar19 = "images/19maggio.PNG"
-#day_on_calendar20 = "images/20aprile.PNG"
+
 
 
 
