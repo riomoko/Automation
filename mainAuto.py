@@ -130,14 +130,18 @@ def load_video():
         #agui.click()
         #agui_tools.moveToImageCenter(SaveThumb, random.uniform(0.3, .6))
         #agui.click()
-        check_and_click(SaveThumb, 8)
+        agui_tools.moveToImageCenter(SaveThumb, random.uniform(0.3, .6))
+        agui.click()
+        pause()
+        agui.click()
         pause()
         pause()
         pause()
         pause()
-        pause()
+        agui.click()
+        #check_and_click(SaveThumb, 8)
 
-
+    TTS.read("now scroll")
     agui.scroll(-1300)
     TTS.read("scrollato")
 
