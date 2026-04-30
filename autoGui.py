@@ -47,7 +47,7 @@ class AguiTools:
         # Rilasciare il mouse per completare il drag and drop
         agui.mouseUp(button='left')
 
-    def moveToImageCenter(self, image, delay=0.8):
+    def moveToImageCenter(self, image, delay=0.6):
         location = agui.locateCenterOnScreen(image, confidence=0.9)
         agui.moveTo(location, duration=delay)
 

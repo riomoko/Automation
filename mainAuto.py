@@ -42,6 +42,8 @@ def run_image_check():
 def pause():
     time.sleep(random.uniform(0.05, 0.15))
 
+def pause2Sec():
+    time.sleep(random.uniform(1.65, 2.15))
 
 def check_and_click(image, seconds=20):
     image_check(image, seconds)
@@ -78,7 +80,7 @@ def load_video():
     pause()
     image_check(hashAstromostro, seconds=120)
     TTS.read("tag")
-    agui_tools.moveToImageCenter(hashAstromostro, random.uniform(0.3, 1.9))
+    agui_tools.moveToImageCenter(hashAstromostro, random.uniform(0.3, 1.3))
     for i in range(30):
         agui.click()
         #  TTS.read("t")
@@ -88,6 +90,32 @@ def load_video():
     image_check(uploaded, seconds=180)
     TTS.read("caricato")
     pause()
+    #cambia thumb
+    agui_tools.moveToImageCenter(editCover,random.uniform(0.3, .6))
+    TTS.read("open edit cover")
+    pause()
+    agui.click()
+    TTS.read("click")
+    pause()
+    agui_tools.moveToImageCenter(blackFrame, random.uniform(0.3, .6))
+    TTS.read("black")
+    pause2Sec()
+    check_and_click(blackFrame, 6)
+    TTS.read("black click")
+    check_and_click(bottoncino,6)
+    TTS.read("bottoncino click")
+   # agui.click()
+   # agui_tools.moveToImageCenter(bottoncino, random.uniform(0.3, .6))
+   # agui.click()
+    agui_tools.moveToImageCenter(SaveThumb, random.uniform(0.3, .6))
+    agui.click()
+    pause()
+    pause()
+    pause()
+    pause()
+    pause()
+
+
     agui.scroll(-1300)
     TTS.read("scrollato")
 
@@ -286,6 +314,11 @@ clock = "images/clock_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
+editCover="images/editCover.PNG"
+SaveThumb="images/SaveThumb.PNG"
+#UploadNow="images/UploadNow.PNG"
+blackFrame="images/blackFrame.PNG"
+bottoncino="images/bottoncino.PNG"
 day_on_calendar1 = "images/1maggio.PNG"
 day_on_calendar2 = "images/2maggio.PNG"
 day_on_calendar3 = "images/3maggio.PNG"
