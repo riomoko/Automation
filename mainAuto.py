@@ -100,8 +100,9 @@ def load_video():
     agui_tools.moveToImageCenter(blackFrame, random.uniform(0.3, .6))
     TTS.read("black")
     pause2Sec()
-    check_and_click(blackFrame, 6)
-    TTS.read("black click")
+   # check_and_click(blackFrame, 6)
+    drag_and_drop(videoUploadArea,blackFrame)
+    TTS.read("black drop")
     check_and_click(bottoncino,6)
     TTS.read("bottoncino click")
    # agui.click()
@@ -302,7 +303,7 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
 #uploadPlus = "images/uploadBuzz.png"
 uploadPlus = "images/plusUpload.png"
 videoUploadArea = "images/uploadAreaVps_old.PNG"
-#videoUploadArea = "images/uploadAreaVps.PNG"
+videoUploadArea = "images/uploadAreaVps.PNG"
 iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
 uploaded = "images/uploaded_vps.PNG"
