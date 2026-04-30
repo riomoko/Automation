@@ -57,7 +57,7 @@ class AguiTools:
     # === ESEMPIO USO ===
 if __name__ == "__main__":
     try:
-        upload_location = agui.locateOnScreen("plus_upload.png", confidence=0.9)
+        upload_location = agui.locateOnScreen("images/plus_upload.png", confidence=0.9)
         if upload_location is not None:
             uploadPos = agui.center(upload_location)
             print(uploadPos)
