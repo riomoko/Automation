@@ -369,211 +369,31 @@ skipcontrol = False
 
 agui_tools = AguiTools()
 
-send_message_cele_telegram("Automazione Python ASTROMOSTRO Inizio" )
-for i in range(12):
-    print (i)
-    #publish_now()
-    #publish_before_midnight()
-    #publish_day(day_on_calendar1)
+def run_automation(schedule_data, start_hour_val=17):
+    """
+    Funzione per far partire l'automazione con i dati ricevuti dalla UI.
+    schedule_data: lista di dizionari con { 'image': path, 'change_month': bool }
+    """
+    send_message_cele_telegram("Automazione Python ASTROMOSTRO Inizio")
+    
+    for item in schedule_data:
+        day_image = item.get('image')
+        change_month = item.get('change_month', False)
+        
+        print(f"Scheduling post per: {day_image} (Cambio mese: {change_month})")
+        
+        schedule_posts(
+            start_hour=int(start_hour_val),
+            start_minute=get_random_minutes(),
+            minute_step=get_random_steps(),
+            calendar_day=day_image,
+            max_cycles=1,
+            change_month_par=change_month
+        )
 
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar1,
-    max_cycles=1,
-    change_month_par=  True
-)
+    send_message_cele_telegram("Python Automazione ASTROMOSTRO terminata tutto ok!")
+    TTS.read("Attenzione Terminato tutto")
 
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar2,
-    max_cycles=1,
-    change_month_par=  True
-)
-
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar3,
-    max_cycles=1,
-    change_month_par=  True
-)
-
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar4,
-    max_cycles=1,
-    change_month_par=  True
-)
-
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar5,
-    max_cycles=1,
-    change_month_par=  True
-)
-
-schedule_posts(
-    start_hour=16,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar6,
-    max_cycles=1,
-    change_month_par= True
-)
-
-
-schedule_posts(
-    start_hour=16,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar7,
-    max_cycles=1,
-    change_month_par=  True
-)
-
-schedule_posts(
-    start_hour=16,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar8,
-    max_cycles=1,
-    change_month_par=  True
-)
-
-schedule_posts(
-    start_hour=16,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar9,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=12,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar10,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=12,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar11,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar12,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=14,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar13,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar14,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar15,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar16,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar17,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar18,
-    max_cycles=1,
-    change_month_par= True
-)
-
-schedule_posts(
-    start_hour=13,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar19,
-    max_cycles=1,
-    change_month_par= True
-)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-send_message_cele_telegram("Python Automazione ASTROMOSTRO terminata tutto ok!")
-TTS.read("Attenzione Terminato tutto")
-sys.exit(0)
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    # Il loop principale ora è gestito dalla UI
+    pass

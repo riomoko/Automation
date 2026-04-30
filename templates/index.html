@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astromostro Automation Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ASTROMOSTRO AUTOMATION</h1>
+        
+        <div class="dashboard-grid">
+            <!-- Calendar Section -->
+            <div class="calendar-card">
+                <div class="calendar-header">
+                    <button class="nav-btn" id="prevMonth">&lt;</button>
+                    <h2 id="monthDisplay">Maggio 2024</h2>
+                    <button class="nav-btn" id="nextMonth">&gt;</button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Days will be injected here -->
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 15px;">
+                    * Clicca sui giorni per selezionarli. Verrà cercata l'immagine corrispondente (es. 7maggio.PNG)
+                </p>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="controls-card">
+                <div class="input-group">
+                    <label for="startHour">Ora di Inizio (start_hour)</label>
+                    <input type="number" id="startHour" min="0" max="23" value="17">
+                </div>
+
+                <div class="input-group">
+                    <label>Programmazione Selezionata</label>
+                    <div class="schedule-list" id="scheduleList">
+                        <div class="schedule-item" style="color: var(--text-secondary); justify-content: center;">
+                            Nessun giorno selezionato
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-run" id="runBtn">Avvia Automazione</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const monthsIta = {
+            0: "gennaio", 1: "febbraio", 2: "marzo", 3: "aprile",
+            4: "maggio", 5: "giugno", 6: "luglio", 7: "agosto",
+            8: "settembre", 9: "ottobre", 10: "novembre", 11: "dicembre"
+        };
+
+        let selectedSchedule = {}; // Key: "year-month-day", Value: { day, month, year }
+        const now = new Date();
+        let currentViewMonth = now.getMonth();
+        let currentViewYear = now.getFullYear();
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const monthDisplay = document.getElementById('monthDisplay');
+            grid.innerHTML = '';
+            
+            monthDisplay.innerText = `${monthsIta[currentViewMonth].charAt(0).toUpperCase() + monthsIta[currentViewMonth].slice(1)} ${currentViewYear}`;
+
+            const firstDay = new Date(currentViewYear, currentViewMonth, 1).getDay();
+            const daysInMonth = new Date(currentViewYear, currentViewMonth + 1, 0).getDate();
+
+            // Adjust firstDay for Monday start (standard in Italy)
+            let startOffset = firstDay === 0 ? 6 : firstDay - 1;
+
+            // Empty cells before first day
+            for (let i = 0; i < startOffset; i++) {
+                const empty = document.createElement('div');
+                grid.appendChild(empty);
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dayEl = document.createElement('div');
+                dayEl.classList.add('day');
+                dayEl.innerText = d;
+                
+                if (d === now.getDate() && currentViewMonth === now.getMonth() && currentViewYear === now.getFullYear()) {
+                    dayEl.classList.add('today');
+                }
+
+                const dateKey = `${currentViewYear}-${currentViewMonth}-${d}`;
+                if (selectedSchedule[dateKey]) {
+                    dayEl.classList.add('selected');
+                }
+
+                dayEl.onclick = () => toggleDay(d);
+                grid.appendChild(dayEl);
+            }
+        }
+
+        function toggleDay(day) {
+            const dateKey = `${currentViewYear}-${currentViewMonth}-${day}`;
+            if (selectedSchedule[dateKey]) {
+                delete selectedSchedule[dateKey];
+            } else {
+                selectedSchedule[dateKey] = {
+                    day: day,
+                    month: currentViewMonth,
+                    year: currentViewYear
+                };
+            }
+            renderCalendar();
+            updateScheduleList();
+        }
+
+        function updateScheduleList() {
+            const list = document.getElementById('scheduleList');
+            list.innerHTML = '';
+            
+            const keys = Object.keys(selectedSchedule).sort();
+            
+            if (keys.length === 0) {
+                list.innerHTML = '<div class="schedule-item" style="color: var(--text-secondary); justify-content: center;">Nessun giorno selezionato</div>';
+                return;
+            }
+
+            keys.forEach(key => {
+                const itemData = selectedSchedule[key];
+                const item = document.createElement('div');
+                item.classList.add('schedule-item');
+                const monthName = monthsIta[itemData.month];
+                const imagePath = `images/${itemData.day}${monthName}.PNG`;
+                item.innerHTML = `
+                    <span class="day-info">${itemData.day} ${monthName}</span>
+                    <span class="image-path">${imagePath}</span>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        document.getElementById('prevMonth').onclick = () => {
+            currentViewMonth--;
+            if (currentViewMonth < 0) {
+                currentViewMonth = 11;
+                currentViewYear--;
+            }
+            renderCalendar();
+        };
+
+        document.getElementById('nextMonth').onclick = () => {
+            currentViewMonth++;
+            if (currentViewMonth > 11) {
+                currentViewMonth = 0;
+                currentViewYear++;
+            }
+            renderCalendar();
+        };
+
+        document.getElementById('runBtn').onclick = async () => {
+            const keys = Object.keys(selectedSchedule).sort();
+            if (keys.length === 0) {
+                alert("Seleziona almeno un giorno sul calendario!");
+                return;
+            }
+
+            const schedule = keys.map(key => {
+                const item = selectedSchedule[key];
+                return {
+                    image: `images/${item.day}${monthsIta[item.month]}.PNG`,
+                    change_month: item.month !== now.getMonth() // Se il mese è diverso da quello attuale, attiva il cambio mese
+                };
+            });
+
+            const startHour = document.getElementById('startHour').value;
+
+            const btn = document.getElementById('runBtn');
+            btn.innerText = "Esecuzione in corso...";
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        schedule: schedule,
+                        start_hour: start_hour
+                    })
+                });
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                alert("Errore nell'avvio dell'automazione");
+            } finally {
+                btn.innerText = "Avvia Automazione";
+                btn.disabled = false;
+            }
+        };
+
+        renderCalendar();
+    </script>
+</body>
+</html>
