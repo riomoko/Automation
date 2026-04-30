@@ -90,6 +90,7 @@ def load_video():
     image_check(uploaded, seconds=180)
     TTS.read("caricato")
     pause()
+
     #cambia thumb
     agui_tools.moveToImageCenter(editCover,random.uniform(0.3, .6))
     TTS.read("open edit cover")
@@ -97,12 +98,30 @@ def load_video():
     agui.click()
     TTS.read("click")
     pause()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
+    pause2Sec()
     agui_tools.moveToImageCenter(blackFrame, random.uniform(0.3, .6))
     TTS.read("black")
-    pause2Sec()
+    #agui.click()
+
+    agui_tools.moveToImageCenter(blackFrame2, random.uniform(0.3, .6))
+   # agui.click()
+  #  TTS.read("black 2")
+  #  agui_tools.moveToImageCenter(blackFrame, random.uniform(0.3, .6))
+  #  agui.click()
+  #  TTS.read("black")
+  #  pause2Sec()
    # check_and_click(blackFrame, 6)
-    drag_and_drop(videoUploadArea,blackFrame)
-    TTS.read("black drop")
+   # drag_and_drop(UploadNow,blackFrame)
+
     check_and_click(bottoncino,6)
     TTS.read("bottoncino click")
    # agui.click()
@@ -300,10 +319,10 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
         # Aggiungi l'intervallo di tempo
         current_time += timedelta(minutes=minute_step)
 
-#uploadPlus = "images/uploadBuzz.png"
+uploadPlus = "images/uploadBuzz.png"
 uploadPlus = "images/plusUpload.png"
 videoUploadArea = "images/uploadAreaVps_old.PNG"
-videoUploadArea = "images/uploadAreaVps.PNG"
+#videoUploadArea = "images/uploadAreaVps.PNG"
 iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
 uploaded = "images/uploaded_vps.PNG"
@@ -317,8 +336,9 @@ calendar_icon = "images/calendar_vps.PNG"
 cambioMese="images/CambioMese.PNG"
 editCover="images/editCover.PNG"
 SaveThumb="images/SaveThumb.PNG"
-#UploadNow="images/UploadNow.PNG"
+UploadNow="images/UploadNow.PNG"
 blackFrame="images/blackFrame.PNG"
+blackFrame2="images/blackFrame2.PNG"
 bottoncino="images/bottoncino.PNG"
 day_on_calendar1 = "images/1maggio.PNG"
 day_on_calendar2 = "images/2maggio.PNG"
