@@ -354,14 +354,7 @@ for i in range(12):
     #publish_before_midnight()
     #publish_day(day_on_calendar1)
 
-schedule_posts(
-    start_hour=17,
-    start_minute=get_random_minutes(),
-    minute_step=get_random_steps(),
-    calendar_day=day_on_calendar1,
-    max_cycles=1,
-    change_month_par= True
-)
+
 
 schedule_posts(
     start_hour=17,

@@ -48,7 +48,7 @@ class AguiTools:
         agui.mouseUp(button='left')
 
     def moveToImageCenter(self, image, delay=0.6):
-        location = agui.locateCenterOnScreen(image, confidence=0.9)
+        location = agui.locateCenterOnScreen(image, confidence=0.8)
         agui.moveTo(location, duration=delay)
 
 
