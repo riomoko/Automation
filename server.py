@@ -30,6 +30,15 @@ def run_loop():
     schedule_data = data.get('schedule', [])
     start_hour = data.get('start_hour', 14)
 
+    print("========================================")
+    print("AVVIO AUTOMAZIONE: GIORNI SCHEDULATI")
+    print("========================================")
+    if not schedule_data:
+        print("Nessun giorno schedulato trovato.")
+    for item in schedule_data:
+        print(f" - Immagine: {item.get('image')}, Cambio mese: {item.get('change_month')}")
+    print("========================================")
+
     try:
         from mainAuto import run_automation
     except Exception as e:
