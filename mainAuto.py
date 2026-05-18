@@ -369,11 +369,26 @@ def run_automation(schedule_data, start_hour_val=13):
     Funzione per far partire l'automazione con i dati ricevuti dalla UI.
     schedule_data: lista di dizionari con { 'image': path, 'change_month': bool }
     """
+    from datetime import datetime
+    
     send_message_cele_telegram("Automazione Python ASTROMOSTRO Inizio")
+    
+    months_ita = {
+        1: "gennaio", 2: "febbraio", 3: "marzo", 4: "aprile",
+        5: "maggio", 6: "giugno", 7: "luglio", 8: "agosto",
+        9: "settembre", 10: "ottobre", 11: "novembre", 12: "dicembre"
+    }
+    
+    current_month_name = months_ita[datetime.now().month]
     
     for item in schedule_data:
         day_image = item.get('image')
-        change_month = item.get('change_month', False)
+        
+        # Determina se il giorno appartiene al mese corrente
+        if day_image and current_month_name in day_image.lower():
+            change_month = False
+        else:
+            change_month = True
         
         print(f"Scheduling post per: {day_image} (Cambio mese: {change_month})")
         
