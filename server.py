@@ -28,7 +28,7 @@ def get_config():
 def run_loop():
     data = request.json
     schedule_data = data.get('schedule', [])
-    start_hour = data.get('start_hour', 17)
+    start_hour = data.get('start_hour', 14)
 
     try:
         from mainAuto import run_automation
