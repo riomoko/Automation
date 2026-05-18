@@ -136,9 +136,18 @@ def load_video():
         agui_tools.moveToImageCenter(SaveThumb, random.uniform(0.3, .6))
         agui.click()
         #check_and_click(SaveThumb, 8)
-        #pause2Sec()
+        pause2Sec()
+        pause2Sec()
         TTS.read("Save  click")
 
+    while  not agui_tools.imagePresent(uploaded):
+        pause2Sec()
+        TTS.read("waiting")
+
+    pause2Sec()
+    agui_tools.moveToImageCenter(uploaded, random.uniform(0.3, .6))
+    agui.click()
+    pause()
     TTS.read("now scroll")
     agui.scroll(-1300)
     TTS.read("scrollato")
@@ -325,8 +334,9 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
 
 uploadPlus = "images/uploadBuzz.PNG"
 uploadPlus = "images/plusUpload.PNG"
-videoUploadArea = "images/uploadAreaVps_old.PNG"
+#videoUploadArea = "images/uploadAreaVps_old.PNG"
 #videoUploadArea = "images/uploadAreaVps.PNG"
+videoUploadArea = "images/uploadAreaVpsM.PNG"
 iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
 uploaded = "images/uploaded_vps.PNG"
@@ -354,7 +364,7 @@ skipcontrol = False
 
 agui_tools = AguiTools()
 
-def run_automation(schedule_data, start_hour_val=17):
+def run_automation(schedule_data, start_hour_val=13):
     """
     Funzione per far partire l'automazione con i dati ricevuti dalla UI.
     schedule_data: lista di dizionari con { 'image': path, 'change_month': bool }
