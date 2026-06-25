@@ -21,7 +21,7 @@ def index():
 def get_config():
     return jsonify({
         "months": MONTHS_ITA,
-        "default_start_hour": 17
+        "default_start_hour": 13
     })
 
 @app.route('/api/run', methods=['POST'])
