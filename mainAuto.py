@@ -336,8 +336,10 @@ uploadPlus = "images/uploadBuzz.PNG"
 uploadPlus = "images/plusUpload.PNG"
 #videoUploadArea = "images/uploadAreaVps_old.PNG"
 #videoUploadArea = "images/uploadAreaVps.PNG"
+#..........................................
 videoUploadArea = "images/uploadAreaVpsM.PNG"
 #videoUploadArea = "images/uploadAreaVpsO.PNG"
+#..........................................
 iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
 uploaded = "images/uploaded_vps.PNG"
@@ -365,7 +367,7 @@ skipcontrol = False
 
 agui_tools = AguiTools()
 
-def run_automation(schedule_data, start_hour_val=12):
+def run_automation(schedule_data, start_hour_val=14):
     """
     Funzione per far partire l'automazione con i dati ricevuti dalla UI.
     schedule_data: lista di dizionari con { 'image': path, 'change_month': bool }
