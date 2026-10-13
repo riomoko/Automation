@@ -36,7 +36,8 @@ def run_loop():
     if not schedule_data:
         print("Nessun giorno schedulato trovato.")
     for item in schedule_data:
-        print(f" - Immagine: {item.get('image')}, Cambio mese: {item.get('change_month')}")
+        day_str = f"{item.get('day')}/{item.get('month')}/{item.get('year')}" if item.get('day') else item.get('image')
+        print(f" - Data: {day_str}, Cambio mese: {item.get('change_month')}")
     print("========================================")
 
     try:

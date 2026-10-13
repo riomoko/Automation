@@ -25,7 +25,7 @@
                     <!-- Days will be injected here -->
                 </div>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 15px;">
-                    * Clicca sui giorni per selezionarli. Verrà cercata l'immagine corrispondente (es. 7maggio.PNG)
+                    * Clicca sui giorni per selezionarli. Il giorno verrà calcolato e cliccato automaticamente sul calendario.
                 </p>
             </div>
 
@@ -137,10 +137,9 @@
                 const item = document.createElement('div');
                 item.classList.add('schedule-item');
                 const monthName = monthsIta[itemData.month];
-                const imagePath = `images/${itemData.day}${monthName}.PNG`;
                 item.innerHTML = `
-                    <span class="day-info">${itemData.day} ${monthName}</span>
-                    <span class="image-path">${imagePath}</span>
+                    <span class="day-info">${itemData.day} ${monthName} ${itemData.year}</span>
+                    <span class="image-path">Auto (${itemData.day}/${itemData.month + 1}/${itemData.year})</span>
                 `;
                 list.appendChild(item);
             });
@@ -180,8 +179,11 @@
             const schedule = keys.map(key => {
                 const item = selectedSchedule[key];
                 return {
+                    day: item.day,
+                    month: item.month + 1,
+                    year: item.year,
                     image: `images/${item.day}${monthsIta[item.month]}.PNG`,
-                    change_month: item.month !== now.getMonth() // Se il mese è diverso da quello attuale, attiva il cambio mese
+                    change_month: item.month !== now.getMonth() || item.year !== now.getFullYear()
                 };
             });
 

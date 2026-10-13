@@ -259,6 +259,99 @@ def publish_before_midnight():
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
+def get_calendar_day_coords(anchor_x, anchor_y, day, month, year):
+    """
+    Calcola le coordinate (x, y) sullo schermo per un dato giorno (day, month, year)
+    a partire dal centro dell'immagine anchor 'images/CambioMese.PNG'.
+    Griglia TikTok: 7 colonne (0=Domenica .. 6=Sabato), fino a 6 righe (0..5).
+    """
+    from datetime import datetime
+    # In Python weekday(): 0=Lun .. 6=Dom -> convertiamo in: 0=Dom, 1=Lun, ..., 6=Sab
+    first_weekday_sun0 = (datetime(int(year), int(month), 1).weekday() + 1) % 7
+    index = first_weekday_sun0 + (int(day) - 1)
+    row = index // 7
+    col = index % 7
+
+    # Offset calibrati al pixel da CambioMese.PNG (freccia '>' con 'Sat' sotto):
+    # La cella (row=0, col=6 [Sabato]) si trova a dx=-11, dy=+94 dal centro di CambioMese.PNG
+    # Passo tra colonne: 49.8 px | Passo tra righe: 36 px
+    col6_x = anchor_x - 11
+    row0_y = anchor_y + 94
+
+    target_x = int(round(col6_x - (6 - col) * 49.8))
+    target_y = int(round(row0_y + row * 36))
+    return target_x, target_y, row, col
+
+
+def parse_calendar_day_info(calendar_day_info, cambioMeseDecision=False):
+    """
+    Estrae (day, month, year) sia da un dizionario {'day', 'month', 'year'}
+    sia da una stringa legacy tipo 'images/15ottobre.PNG'.
+    """
+    import re
+    from datetime import datetime
+
+    now = datetime.now()
+    if isinstance(calendar_day_info, dict):
+        day = calendar_day_info.get('day')
+        month = calendar_day_info.get('month')
+        year = calendar_day_info.get('year', now.year)
+        if day and month:
+            return int(day), int(month), int(year)
+        calendar_day_info = calendar_day_info.get('image', '')
+
+    if isinstance(calendar_day_info, str):
+        months_map = {
+            "gennaio": 1, "febbraio": 2, "febbrailo": 2, "marzo": 3, "aprile": 4, "april": 4,
+            "maggio": 5, "naggio": 5, "giugno": 6, "luglio": 7, "agosto": 8,
+            "settembre": 9, "settenbre": 9, "ottobre": 10, "novembre": 11, "dicembre": 12
+        }
+        m = re.search(r'(\d+)\s*([a-zA-Z]+)', calendar_day_info.lower())
+        if m:
+            day = int(m.group(1))
+            month_name = m.group(2).replace('bis', '')
+            month = months_map.get(month_name, now.month)
+            year = now.year
+            if cambioMeseDecision and month == 1 and now.month == 12:
+                year += 1
+            return day, month, year
+
+    return None, None, None
+
+
+def click_calendar_day(calendar_day_info, cambioMeseDecision=False):
+    """
+    Seleziona automaticamente il giorno sul calendario di TikTok calcolando
+    la posizione nella griglia rispetto all'ancora CambioMese.PNG.
+    """
+    image_check(cambioMese)
+    time.sleep(random.uniform(0.08, 0.15))
+
+    anchor = agui.locateCenterOnScreen(cambioMese, confidence=0.8)
+    if anchor is None:
+        print("Errore: impossibile localizzare il centro di " + cambioMese)
+        send_message_cele_telegram("Automazione BLOCCATA su immagine " + cambioMese)
+        sys.exit()
+
+    if cambioMeseDecision:
+        agui.moveTo(anchor.x, anchor.y, duration=random.uniform(0.05, 0.11))
+        time.sleep(random.uniform(0.05, 0.1))
+        agui.click()
+        time.sleep(random.uniform(0.25, 0.4))
+
+    day, month, year = parse_calendar_day_info(calendar_day_info, cambioMeseDecision)
+    if day is not None and month is not None:
+        target_x, target_y, row, col = get_calendar_day_coords(anchor.x, anchor.y, day, month, year)
+        print(f"[Calendario Auto] Data {day:02d}/{month:02d}/{year} -> Griglia (riga={row}, col={col}) -> Click ({target_x}, {target_y})")
+        agui.moveTo(target_x, target_y, duration=random.uniform(0.1, 0.25))
+        time.sleep(random.uniform(0.05, 0.12))
+        agui.click()
+    else:
+        # Fallback legacy nel caso non sia possibile ricavare la data
+        image_path = calendar_day_info.get('image') if isinstance(calendar_day_info, dict) else calendar_day_info
+        check_and_click(image_path)
+
+
 def publish_day(image_day, hours, minutes, cambioMeseDecision=False):
     TTS.read("automazione Day")
     load_video()
@@ -269,11 +362,8 @@ def publish_day(image_day, hours, minutes, cambioMeseDecision=False):
     check_and_click(schedule)
     check_and_click(schedule)
     check_and_click(calendar_icon)
-    #comment this if in not change mouth
-    if cambioMeseDecision:
-        check_and_click(cambioMese)
 
-    check_and_click(image_day)
+    click_calendar_day(image_day, cambioMeseDecision)
 
     time.sleep(random.uniform(0.1, 0.2))
     #loc = set_clock()
@@ -318,7 +408,7 @@ def schedule_posts(start_hour, start_minute, minute_step, calendar_day, max_cycl
         start_hour (int): Ora di inizio (0-23)
         start_minute (int): Minuto di inizio (0-59)
         minute_step (int): Intervallo in minuti tra le pubblicazioni
-        calendar_day (str): Riferimento al giorno del calendario
+        calendar_day (dict | str): Dati del giorno {'day', 'month', 'year'} o riferimento legacy
         max_cycles (int): Numero massimo di pubblicazioni (default: 12)
     """
     from datetime import datetime, timedelta
@@ -370,7 +460,7 @@ agui_tools = AguiTools()
 def run_automation(schedule_data, start_hour_val=14):
     """
     Funzione per far partire l'automazione con i dati ricevuti dalla UI.
-    schedule_data: lista di dizionari con { 'image': path, 'change_month': bool }
+    schedule_data: lista di dizionari con { 'day': int, 'month': int, 'year': int, 'image': path, 'change_month': bool }
     """
     from datetime import datetime
     
@@ -382,24 +472,30 @@ def run_automation(schedule_data, start_hour_val=14):
         9: "settembre", 10: "ottobre", 11: "novembre", 12: "dicembre"
     }
     
-    current_month_name = months_ita[datetime.now().month]
+    now = datetime.now()
+    current_month_name = months_ita[now.month]
     
     for item in schedule_data:
         day_image = item.get('image')
+        day = item.get('day')
+        month = item.get('month')
+        year = item.get('year', now.year)
         
         # Determina se il giorno appartiene al mese corrente
-        if day_image and current_month_name in day_image.lower():
+        if month is not None:
+            change_month = (int(month) != now.month) or (int(year) != now.year)
+        elif day_image and current_month_name in day_image.lower():
             change_month = False
         else:
             change_month = True
         
-        print(f"Scheduling post per: {day_image} (Cambio mese: {change_month})")
+        print(f"Scheduling post per: {day}/{month}/{year} [{day_image}] (Cambio mese: {change_month})")
         
         schedule_posts(
             start_hour=int(start_hour_val),
             start_minute=get_random_minutes(),
             minute_step=get_random_steps(),
-            calendar_day=day_image,
+            calendar_day=item,
             max_cycles=1,
             change_month_par=change_month
         )
