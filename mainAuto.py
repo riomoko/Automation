@@ -427,8 +427,8 @@ uploadPlus = "images/plusUpload.PNG"
 #videoUploadArea = "images/uploadAreaVps_old.PNG"
 #videoUploadArea = "images/uploadAreaVps.PNG"
 #..........................................
-#videoUploadArea = "images/uploadAreaVpsM.PNG"
-videoUploadArea = "images/uploadAreaVpsO.PNG"
+videoUploadArea = "images/uploadAreaVpsM.PNG"
+#videoUploadArea = "images/uploadAreaVpsO.PNG"
 #..........................................
 iconAM = "images/am.png"
 hashAstromostro = "images/astromostro_tag_vps.PNG"
