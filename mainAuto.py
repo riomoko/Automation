@@ -152,19 +152,161 @@ def load_video():
     agui.scroll(-1300)
     TTS.read("scrollato")
 
-def set_clock():
-    image_check(clock)
+def detect_schedule_layout(seconds=20):
+    """
+    Rileva automaticamente se siamo di fronte al NUOVO layout (3 menu a tendina:
+    Calendario | Orologio | Timezone) oppure al VECCHIO layout (2 menu a tendina:
+    Orologio | Calendario).
+    Restituisce (layout_type, active_calendar_icon, active_clock_icon).
+    """
+    for i in range(seconds):
+        print(f"secondi rilevamento layout schedule {i + 1}")
+        time.sleep(1)
+
+        # 1. Controllo Nuovo Layout: presenza del 3° menu Timezone
+        if agui_tools.imagePresent(timezone_new_icon):
+            print("[Layout Schedule] Rilevato NUOVO layout (3 menu a tendina)")
+            return "new", calendar_new_icon, clock_new_icon
+
+        # 2. Controllo tramite posizione relativa tra Calendario e Orologio
+        cal_new_loc = None
+        cal_old_loc = None
+        clk_loc = None
+        try:
+            cal_new_loc = agui.locateCenterOnScreen(calendar_new_icon, confidence=0.85)
+        except Exception:
+            pass
+        try:
+            cal_old_loc = agui.locateCenterOnScreen(calendar_icon, confidence=0.85)
+        except Exception:
+            pass
+        try:
+            clk_loc = agui.locateCenterOnScreen(clock_new_icon, confidence=0.85)
+        except Exception:
+            pass
+        if clk_loc is None:
+            try:
+                clk_loc = agui.locateCenterOnScreen(clock, confidence=0.85)
+            except Exception:
+                pass
+
+        if cal_new_loc is not None and clk_loc is not None and cal_new_loc.x < clk_loc.x:
+            print("[Layout Schedule] Rilevato NUOVO layout da posizione (Calendario a sinistra di Orologio)")
+            return "new", calendar_new_icon, clock_new_icon
+
+        if cal_old_loc is not None and clk_loc is not None and clk_loc.x < cal_old_loc.x:
+            print("[Layout Schedule] Rilevato VECCHIO layout (2 menu a tendina: Orologio a sinistra di Calendario)")
+            return "old", calendar_icon, clock
+
+        if cal_old_loc is not None:
+            print("[Layout Schedule] Rilevato VECCHIO layout")
+            return "old", calendar_icon, clock
+
+        if cal_new_loc is not None:
+            print("[Layout Schedule] Rilevato NUOVO layout")
+            return "new", calendar_new_icon, clock_new_icon
+
+    print("Impossibile rilevare il layout Schedule")
+    TTS.read("Layout schedule missing")
+    send_message_cele_telegram("Automazione BLOCCATA: layout schedule non riconosciuto")
+    sys.exit()
+
+def _select_new_clock_column_item(col_x, slot0_y, target_idx, total_items):
+    """
+    Seleziona l'elemento target_idx (0..total_items-1) in una colonna del nuovo
+    orologio di TikTok (che ha 7 slot visibili da -3 a +3, distanziati di 36 px,
+    con 3 slot vuoti di padding in cima e in fondo).
+    Scorre prima a inizio/fine corsa per avere un riferimento certo (0 oppure total_items-1
+    nello slot centrale 0) e poi clicca a passi di max 3 slot fino a centrare target_idx.
+    """
+    slot_step_y = 36
+
+    if target_idx <= total_items // 2:
+        # Scorri tutto in alto: l'elemento 0 ('00') si posiziona nello slot centrale 0 (slot0_y)
+        agui.moveTo(col_x, slot0_y, duration=0.1)
+        time.sleep(random.uniform(0.08, 0.15))
+        for _ in range(18):
+            agui.scroll(900)
+            time.sleep(random.uniform(0.03, 0.06))
+        time.sleep(random.uniform(0.2, 0.3))
+
+        if target_idx == 0:
+            agui.click(col_x, slot0_y)
+            time.sleep(random.uniform(0.25, 0.35))
+            return
+
+        cur = 0
+        while cur < target_idx:
+            step = min(3, target_idx - cur)
+            click_y = slot0_y + step * slot_step_y
+            agui.moveTo(col_x, click_y, duration=random.uniform(0.08, 0.15))
+            time.sleep(random.uniform(0.05, 0.1))
+            agui.click()
+            time.sleep(random.uniform(0.32, 0.45))
+            cur += step
+    else:
+        # Scorri tutto in basso: l'ultimo elemento (total_items - 1) si posiziona nello slot centrale 0 (slot0_y)
+        agui.moveTo(col_x, slot0_y, duration=0.1)
+        time.sleep(random.uniform(0.08, 0.15))
+        for _ in range(18):
+            agui.scroll(-900)
+            time.sleep(random.uniform(0.03, 0.06))
+        time.sleep(random.uniform(0.2, 0.3))
+
+        last_idx = total_items - 1
+        if target_idx == last_idx:
+            agui.click(col_x, slot0_y)
+            time.sleep(random.uniform(0.25, 0.35))
+            return
+
+        cur = last_idx
+        while cur > target_idx:
+            step = min(3, cur - target_idx)
+            click_y = slot0_y - step * slot_step_y
+            agui.moveTo(col_x, click_y, duration=random.uniform(0.08, 0.15))
+            time.sleep(random.uniform(0.05, 0.1))
+            agui.click()
+            time.sleep(random.uniform(0.32, 0.45))
+            cur -= step
+
+
+def set_clock(clock_img=None, layout_type="old"):
+    target_clock = clock_img or clock
+    image_check(target_clock)
     time.sleep(random.uniform(0.05, 0.1))
-    agui_tools.moveToImageCenter(clock, random.uniform(0.1, 0.3))
+    loc = None
+    try:
+        loc = agui.locateCenterOnScreen(target_clock, confidence=0.8)
+    except Exception:
+        pass
+    agui_tools.moveToImageCenter(target_clock, random.uniform(0.1, 0.3))
     time.sleep(random.uniform(0.05, 0.1))
     TTS.read("clocko")
     agui.click()
-    time.sleep(random.uniform(0.1, 0.2))
+    time.sleep(random.uniform(0.15, 0.25))
 
-    loc = agui.locateCenterOnScreen(clock, confidence=0.9)
+    try:
+        loc_after = agui.locateCenterOnScreen(target_clock, confidence=0.8)
+        if loc_after is not None:
+            loc = loc_after
+    except Exception:
+        pass
+
     if loc is not None:
-        print("CLOCK")
-        print(loc)
+        print(f"CLOCK ({layout_type}): {loc}")
+        if layout_type == "new":
+            slot0_y = loc.y - 153
+            hours_x = loc.x + 34
+            minutes_x = loc.x + 177
+            _select_new_clock_column_item(hours_x, slot0_y, 23, 24)
+            _select_new_clock_column_item(minutes_x, slot0_y, 11, 12)
+            # Chiudi il popup dell'orologio cliccando sul bottone dell'orologio prima dello scroll pagina
+            agui.moveTo(loc.x, loc.y, duration=0.1)
+            time.sleep(random.uniform(0.05, 0.1))
+            agui.click()
+            time.sleep(random.uniform(0.1, 0.2))
+            return loc
+
         agui.moveTo(loc.x + 10, loc.y - 100, duration=0.1)
         time.sleep(random.uniform(0.1, 0.2))
         for i in range(24):
@@ -180,19 +322,43 @@ def set_clock():
         time.sleep(random.uniform(0.05, 0.15))
         return loc
 
-def set_clock_time(hours, minutes):
-    image_check(clock)
+def set_clock_time(hours, minutes, clock_img=None, layout_type="old"):
+    target_clock = clock_img or clock
+    image_check(target_clock)
     time.sleep(random.uniform(0.05, 0.1))
-    agui_tools.moveToImageCenter(clock, random.uniform(0.1, 0.3))
+    loc = None
+    try:
+        loc = agui.locateCenterOnScreen(target_clock, confidence=0.8)
+    except Exception:
+        pass
+    agui_tools.moveToImageCenter(target_clock, random.uniform(0.1, 0.3))
     time.sleep(random.uniform(0.05, 0.1))
     TTS.read("clocko")
     agui.click()
-    time.sleep(random.uniform(0.1, 0.2))
+    time.sleep(random.uniform(0.15, 0.25))
 
-    loc = agui.locateCenterOnScreen(clock, confidence=0.9)
+    try:
+        loc_after = agui.locateCenterOnScreen(target_clock, confidence=0.8)
+        if loc_after is not None:
+            loc = loc_after
+    except Exception:
+        pass
+
     if loc is not None:
-        print("CLOCK")
-        print(loc)
+        print(f"CLOCK ({layout_type}): {loc} -> Target {hours:02d}:{minutes:02d}")
+        if layout_type == "new":
+            slot0_y = loc.y - 153
+            hours_x = loc.x + 34
+            minutes_x = loc.x + 177
+            _select_new_clock_column_item(hours_x, slot0_y, int(hours), 24)
+            _select_new_clock_column_item(minutes_x, slot0_y, int(minutes) // 5, 12)
+            # Chiudi il popup dell'orologio cliccando sul bottone dell'orologio prima dello scroll pagina
+            agui.moveTo(loc.x, loc.y, duration=0.1)
+            time.sleep(random.uniform(0.05, 0.1))
+            agui.click()
+            time.sleep(random.uniform(0.1, 0.2))
+            return loc
+
         agui.moveTo(loc.x + 10, loc.y - 100, duration=0.1)
         time.sleep(random.uniform(0.1, 0.2))
         for i in range(24):
@@ -237,8 +403,9 @@ def publish_before_midnight():
     check_and_click(schedule)
 
     time.sleep(random.uniform(0.1, 0.2))
+    layout_type, _, active_clock_icon = detect_schedule_layout()
 
-    loc=set_clock()
+    loc=set_clock(clock_img=active_clock_icon, layout_type=layout_type)
 
     agui.moveTo(loc.x, loc.y , duration=0.1)
     pause()
@@ -259,10 +426,10 @@ def publish_before_midnight():
     agui_tools.imageClick(successivo)
     time.sleep(random.uniform(2, 3.1))
 
-def get_calendar_day_coords(anchor_x, anchor_y, day, month, year):
+def get_calendar_day_coords(anchor_x, anchor_y, day, month, year, cal_layout="old"):
     """
     Calcola le coordinate (x, y) sullo schermo per un dato giorno (day, month, year)
-    a partire dal centro dell'immagine anchor 'images/CambioMese.PNG'.
+    a partire dal centro dell'immagine anchor ('images/CambioMese.PNG' oppure 'images/CambioMese_new.PNG').
     Griglia TikTok: 7 colonne (0=Domenica .. 6=Sabato), fino a 6 righe (0..5).
     """
     from datetime import datetime
@@ -272,14 +439,25 @@ def get_calendar_day_coords(anchor_x, anchor_y, day, month, year):
     row = index // 7
     col = index % 7
 
-    # Offset calibrati al pixel da CambioMese.PNG (freccia '>' con 'Sat' sotto):
-    # La cella (row=0, col=6 [Sabato]) si trova a dx=-11, dy=+94 dal centro di CambioMese.PNG
-    # Passo tra colonne: 49.8 px | Passo tra righe: 36 px
-    col6_x = anchor_x - 11
-    row0_y = anchor_y + 94
+    if cal_layout == "new":
+        # Nuovo layout calendario (calibrato da 'nuovo layout calendario.PNG' + 'CambioMese_new.PNG'):
+        # Cella (row=0, col=6 [Sabato]) -> dx = 0, dy = +53 dal centro di CambioMese_new.PNG
+        # Passo tra colonne: 37.5 px | Passo tra righe: 36 px
+        col6_x = anchor_x
+        row0_y = anchor_y + 53
+        col_step = 37.5
+        row_step = 36.0
+    else:
+        # Vecchio layout calendario (calibrato da 'CambioMese.PNG'):
+        # Cella (row=0, col=6 [Sabato]) -> dx = -11, dy = +94 dal centro di CambioMese.PNG
+        # Passo tra colonne: 49.8 px | Passo tra righe: 36 px
+        col6_x = anchor_x - 11
+        row0_y = anchor_y + 94
+        col_step = 49.8
+        row_step = 36.0
 
-    target_x = int(round(col6_x - (6 - col) * 49.8))
-    target_y = int(round(row0_y + row * 36))
+    target_x = int(round(col6_x - (6 - col) * col_step))
+    target_y = int(round(row0_y + row * row_step))
     return target_x, target_y, row, col
 
 
@@ -319,30 +497,53 @@ def parse_calendar_day_info(calendar_day_info, cambioMeseDecision=False):
     return None, None, None
 
 
-def click_calendar_day(calendar_day_info, cambioMeseDecision=False):
+def wait_for_calendar_anchor(preferred_layout="old", seconds=20):
+    """
+    Attende l'apertura del popup del calendario cercando sia CambioMese_new.PNG
+    sia CambioMese.PNG, e restituisce (cal_layout, anchor_point).
+    """
+    order = [("new", cambioMese_new), ("old", cambioMese)] if preferred_layout == "new" else [("old", cambioMese), ("new", cambioMese_new)]
+    for i in range(seconds):
+        print(f"secondi apertura calendario {i + 1}")
+        time.sleep(1)
+        for lay, img_path in order:
+            try:
+                loc = agui.locateCenterOnScreen(img_path, confidence=0.8)
+                if loc is not None:
+                    print(f"[Calendario] Rilevato popup calendario ({lay}) su {img_path}: {loc}")
+                    return lay, loc
+            except Exception:
+                pass
+
+    missing_img = cambioMese_new if preferred_layout == "new" else cambioMese
+    print(missing_img + " missing")
+    TTS.read(missing_img + " missing")
+    TTS.read("Programma terminato")
+    send_message_cele_telegram("Automazione BLOCCATA su immagine " + missing_img)
+    sys.exit()
+
+
+def click_calendar_day(calendar_day_info, cambioMeseDecision=False, layout_type="old"):
     """
     Seleziona automaticamente il giorno sul calendario di TikTok calcolando
-    la posizione nella griglia rispetto all'ancora CambioMese.PNG.
+    la posizione nella griglia rispetto all'ancora CambioMese_new.PNG o CambioMese.PNG.
     """
-    image_check(cambioMese)
+    cal_layout, anchor = wait_for_calendar_anchor(preferred_layout=layout_type)
     time.sleep(random.uniform(0.08, 0.15))
 
-    anchor = agui.locateCenterOnScreen(cambioMese, confidence=0.8)
-    if anchor is None:
-        print("Errore: impossibile localizzare il centro di " + cambioMese)
-        send_message_cele_telegram("Automazione BLOCCATA su immagine " + cambioMese)
-        sys.exit()
-
     if cambioMeseDecision:
-        agui.moveTo(anchor.x, anchor.y, duration=random.uniform(0.05, 0.11))
+        # Nel nuovo layout la freccia '>' è a (anchor.x + 5, anchor.y - 14); nel vecchio è al centro
+        arrow_x = anchor.x + 5 if cal_layout == "new" else anchor.x
+        arrow_y = anchor.y - 14 if cal_layout == "new" else anchor.y
+        agui.moveTo(arrow_x, arrow_y, duration=random.uniform(0.05, 0.11))
         time.sleep(random.uniform(0.05, 0.1))
         agui.click()
         time.sleep(random.uniform(0.25, 0.4))
 
     day, month, year = parse_calendar_day_info(calendar_day_info, cambioMeseDecision)
     if day is not None and month is not None:
-        target_x, target_y, row, col = get_calendar_day_coords(anchor.x, anchor.y, day, month, year)
-        print(f"[Calendario Auto] Data {day:02d}/{month:02d}/{year} -> Griglia (riga={row}, col={col}) -> Click ({target_x}, {target_y})")
+        target_x, target_y, row, col = get_calendar_day_coords(anchor.x, anchor.y, day, month, year, cal_layout=cal_layout)
+        print(f"[Calendario Auto ({cal_layout})] Data {day:02d}/{month:02d}/{year} -> Griglia (riga={row}, col={col}) -> Click ({target_x}, {target_y})")
         agui.moveTo(target_x, target_y, duration=random.uniform(0.1, 0.25))
         time.sleep(random.uniform(0.05, 0.12))
         agui.click()
@@ -361,13 +562,15 @@ def publish_day(image_day, hours, minutes, cambioMeseDecision=False):
 
     check_and_click(schedule)
     check_and_click(schedule)
-    check_and_click(calendar_icon)
 
-    click_calendar_day(image_day, cambioMeseDecision)
+    layout_type, active_calendar_icon, active_clock_icon = detect_schedule_layout()
+    check_and_click(active_calendar_icon)
+
+    click_calendar_day(image_day, cambioMeseDecision, layout_type=layout_type)
 
     time.sleep(random.uniform(0.1, 0.2))
     #loc = set_clock()
-    loc=set_clock_time(hours, minutes)
+    loc=set_clock_time(hours, minutes, clock_img=active_clock_icon, layout_type=layout_type)
 
     agui.moveTo(loc.x, loc.y , duration=0.1)
     pause()
@@ -438,9 +641,13 @@ views = "images/views_vps_old.PNG"
 successivo = "images/successivo_vps.PNG"
 schedule = "images/schedule_vps.PNG"
 clock = "images/clock_vps.PNG"
+clock_new_icon = "images/clock_new_vps.PNG"
 red_schedule = "images/red_schedule_vps.PNG"
 calendar_icon = "images/calendar_vps.PNG"
-cambioMese="images/CambioMese.PNG"
+calendar_new_icon = "images/calendar_new_vps.PNG"
+timezone_new_icon = "images/timezone_new_vps.PNG"
+cambioMese = "images/CambioMese.PNG"
+cambioMese_new = "images/CambioMese_new.PNG"
 editCover="images/editCover.PNG"
 SaveThumb="images/SaveThumb.PNG"
 UploadNow="images/UploadNow.PNG"
